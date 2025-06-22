@@ -1,104 +1,304 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:video="http://www.google.com/schemas/sitemap-video/1.1"
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
-        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0"
-        xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0">
+  <!-- Norsk hovedside (høyeste prioritet) -->
+  <url>
+    <loc>https://clairvoyancemedium.github.io/slankekapsler-for-rask-og-effektiv-vektnedgang.github.io/no/</loc>
+    <lastmod>2025-05-28T00:56:00Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <mobile:mobile/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://clairvoyancemedium.github.io/slankekapsler-for-rask-og-effektiv-vektnedgang.github.io/no/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://clairvoyancemedium.github.io/slankekapsler-for-rask-og-effektiv-vektnedgang.github.io/en/" />
+    <xhtml:link rel="alternate" hreflang="sv" href="https://clairvoyancemedium.github.io/slankekapsler-for-rask-og-effektiv-vektnedgang.github.io/sv/" />
+    <xhtml:link rel="alternate" hreflang="da" href="https://clairvoyancemedium.github.io/slankekapsler-for-rask-og-effektiv-vektnedgang.github.io/da/" />
+    <xhtml:link rel="alternate" hreflang="fi" href="https://clairvoyancemedium.github.io/slankekapsler-for-rask-og-effektiv-vektnedgang.github.io/fi/" />
+    <image:image>
+      <image:loc>https://i.imgur.com/x9jJPra.jpg</image:loc>
+      <image:title>Slankekapsler for rask vektnedgang</image:title>
+      <image:caption>Effektive vekttapskapsler med naturlige ingredienser</image:caption>
+      <image:geo_location>Norge</image:geo_location>
+    </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/Dj-pfiIzB44/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>Slankekapsler for rask og effektiv vektnedgang</video:title>
+      <video:description>Oppdag hemmeligheten bak vår revolusjonerende slankekapsel-formel</video:description>
+      <video:content_loc>https://www.youtube.com/shorts/Dj-pfiIzB44</video:content_loc>
+      <video:publication_date>2025-05-27</video:publication_date>
+      <video:duration>60</video:duration>
+      <video:view_count>10000</video:view_count>
+      <video:category>Helse</video:category>
+      <video:tag>slankekapsler</video:tag>
+      <video:tag>vektnedgang</video:tag>
+      <video:author>Slankekapsler Team</video:author>
+      <video:license>https://www.clairvoyancemedium.com/vilkår</video:license>
+      <video:rating>5.0</video:rating>
+    </video:video>
+  </url>
+  
+  <!-- Hjemmeside -->
+  <url>
+    <loc>https://clairvoyancemedium.github.io/slankekapsler-for-rask-og-effektiv-vektnedgang.github.io/</loc>
+    <lastmod>2025-05-28T00:56:00Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+    <mobile:mobile/>
+    <xhtml:link rel="alternate" hreflang="no" href="https://clairvoyancemedium.github.io/slankekapsler-for-rask-og-effektiv-vektnedgang.github.io/no/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://clairvoyancemedium.github.io/slankekapsler-for-rask-og-effektiv-vektnedgang.github.io/en/" />
+    <image:image>
+      <image:loc>https://i.imgur.com/x9jJPra.jpg</image:loc>
+      <image:title>Slankekapsler for rask vektnedgang</image:title>
+      <image:caption>Naturlige og effektive vekttapsløsninger</image:caption>
+      <image:geo_location>Global</image:geo_location>
+    </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/Dj-pfiIzB44/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>Vekttapskapsler som virker</video:title>
+      <video:description>Vår unike formel hjelper deg å oppnå drømmekroppen</video:description>
+      <video:content_loc>https://www.youtube.com/shorts/Dj-pfiIzB44</video:content_loc>
+      <video:publication_date>2025-05-27</video:publication_date>
+      <video:duration>60</video:duration>
+      <video:view_count>10000</video:view_count>
+      <video:category>Helse</video:category>
+      <video:tag>slankekapsler</video:tag>
+      <video:tag>vektnedgang</video:tag>
+      <video:author>Slankekapsler Team</video:author>
+      <video:license>https://www.clairvoyancemedium.com/vilkår</video:license>
+      <video:rating>5.0</video:rating>
+    </video:video>
+  </url>
 
-    <!-- 🔥 Page d'accueil (Priorité maximale) -->
-    <url>
-        <loc>https://clairvoyancemedium.github.io/Comment-retrouver-l-amour-rapidement.github.io/</loc>
-        <lastmod>2025-02-17</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>1.0</priority>
-        <image:image>
-            <image:loc>https://clairvoyancemedium.github.io/images/homepage-main.jpg</image:loc>
-            <image:title>Retrouver l'Amour Rapidement</image:title>
-            <image:caption>Techniques puissantes pour attirer et garder l'amour.</image:caption>
-        </image:image>
-    </url>
+  <!-- Engelsk side (USA) -->
+  <url>
+    <loc>https://clairvoyancemedium.github.io/slankekapsler-for-rask-og-effektiv-vektnedgang.github.io/en/</loc>
+    <lastmod>2025-05-28T00:56:00Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <mobile:mobile/>
+    <image:image>
+      <image:loc>https://i.imgur.com/x9jJPra.jpg</image:loc>
+      <image:title>Weight Loss Capsules</image:title>
+      <image:caption>Effective slimming capsules with natural ingredients</image:caption>
+      <image:geo_location>United States</image:geo_location>
+    </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/Dj-pfiIzB44/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>Fast and Effective Weight Loss Capsules</video:title>
+      <video:description>Discover our revolutionary formula for quick results</video:description>
+      <video:content_loc>https://www.youtube.com/shorts/Dj-pfiIzB44</video:content_loc>
+      <video:publication_date>2025-05-27</video:publication_date>
+      <video:duration>60</video:duration>
+      <video:view_count>10000</video:view_count>
+      <video:category>Health</video:category>
+      <video:tag>weight loss</video:tag>
+      <video:tag>slimming capsules</video:tag>
+      <video:author>Weight Loss Team</video:author>
+      <video:license>https://www.clairvoyancemedium.com/terms</video:license>
+      <video:rating>5.0</video:rating>
+    </video:video>
+  </url>
 
-    <!-- 🔍 Pages principales -->
-    <url>
-        <loc>https://clairvoyancemedium.github.io/Comment-retrouver-l-amour-rapidement.github.io/rituels-amour/</loc>
-        <lastmod>2025-02-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://clairvoyancemedium.github.io/images/rituels-amour.jpg</image:loc>
-            <image:title>Rituels d'Amour Puissants</image:title>
-            <image:caption>Découvrez comment les rituels d’amour peuvent renforcer vos relations.</image:caption>
-        </image:image>
-    </url>
+  <!-- Svensk side -->
+  <url>
+    <loc>https://clairvoyancemedium.github.io/slankekapsler-for-rask-og-effektiv-vektnedgang.github.io/sv/</loc>
+    <lastmod>2025-05-28T00:56:00Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <mobile:mobile/>
+    <image:image>
+      <image:loc>https://i.imgur.com/x9jJPra.jpg</image:loc>
+      <image:title>Bantningskapslar för snabb viktnedgång</image:title>
+      <image:caption>Effektiva viktminskningkapslar med naturliga ingredienser</image:caption>
+      <image:geo_location>Sverige</image:geo_location>
+    </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/Dj-pfiIzB44/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>Bantningskapslar som fungerar</video:title>
+      <video:description>Upptäck vår revolutionerande formel för snabb viktnedgång</video:description>
+      <video:content_loc>https://www.youtube.com/shorts/Dj-pfiIzB44</video:content_loc>
+      <video:publication_date>2025-05-27</video:publication_date>
+      <video:duration>60</video:duration>
+      <video:view_count>10000</video:view_count>
+      <video:category>Hälsa</video:category>
+      <video:tag>bantningskapslar</video:tag>
+      <video:tag>viktnedgång</video:tag>
+      <video:author>Bantningskapslar Team</video:author>
+      <video:license>https://www.clairvoyancemedium.com/villkor</video:license>
+      <video:rating>5.0</video:rating>
+    </video:video>
+  </url>
 
-    <url>
-        <loc>https://clairvoyancemedium.github.io/Comment-retrouver-l-amour-rapidement.github.io/voyance-email/</loc>
-        <lastmod>2025-02-15</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-        <image:image>
-            <image:loc>https://clairvoyancemedium.github.io/images/voyance-email.jpg</image:loc>
-            <image:title>Voyance par E-mail</image:title>
-            <image:caption>Posez vos questions à un voyant expérimenté par e-mail.</image:caption>
-        </image:image>
-    </url>
+  <!-- Dansk side -->
+  <url>
+    <loc>https://clairvoyancemedium.github.io/slankekapsler-for-rask-og-effektiv-vektnedgang.github.io/da/</loc>
+    <lastmod>2025-05-28T00:56:00Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <mobile:mobile/>
+    <image:image>
+      <image:loc>https://i.imgur.com/x9jJPra.jpg</image:loc>
+      <image:title>Slankekapsler til hurtigt vægttab</image:title>
+      <image:caption>Effektive vægttabskapsler med naturlige ingredienser</image:caption>
+      <image:geo_location>Danmark</image:geo_location>
+    </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/Dj-pfiIzB44/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>Slankekapsler der virker</video:title>
+      <video:description>Oplev vores revolutionerende formel til hurtigt vægttab</video:description>
+      <video:content_loc>https://www.youtube.com/shorts/Dj-pfiIzB44</video:content_loc>
+      <video:publication_date>2025-05-27</video:publication_date>
+      <video:duration>60</video:duration>
+      <video:view_count>10000</video:view_count>
+      <video:category>Sundhed</video:category>
+      <video:tag>slankekapsler</video:tag>
+      <video:tag>vægttab</video:tag>
+      <video:author>Slankekapsler Team</video:author>
+      <video:license>https://www.clairvoyancemedium.com/vilkaar</video:license>
+      <video:rating>5.0</video:rating>
+    </video:video>
+  </url>
 
-    <!-- 🎥 Contenu Vidéo (avec ID réel de la vidéo) -->
-    <url>
-        <loc>https://clairvoyancemedium.github.io/Comment-retrouver-l-amour-rapidement.github.io/videos/comment-seduire-vite/</loc>
-        <lastmod>2025-02-10</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-        <video:video>
-            <video:player_loc>https://www.youtube.com/watch?v=ABCD1234EFG</video:player_loc>
-            <video:thumbnail_loc>https://clairvoyancemedium.github.io/images/video-thumbnail.jpg</video:thumbnail_loc>
-            <video:title>Comment séduire rapidement</video:title>
-            <video:description>Découvrez les meilleures techniques pour séduire efficacement.</video:description>
-        </video:video>
-    </url>
+  <!-- Finsk side -->
+  <url>
+    <loc>https://clairvoyancemedium.github.io/slankekapsler-for-rask-og-effektiv-vektnedgang.github.io/fi/</loc>
+    <lastmod>2025-05-28T00:56:00Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+    <mobile:mobile/>
+    <image:image>
+      <image:loc>https://i.imgur.com/x9jJPra.jpg</image:loc>
+      <image:title>Laihdutuskapselit nopeaan painonpudotukseen</image:title>
+      <image:caption>Tehokkaat painonpudotuslääkkeet luonnollisilla aineosilla</image:caption>
+      <image:geo_location>Suomi</image:geo_location>
+    </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/Dj-pfiIzB44/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>Toimivat laihdutuskapselit</video:title>
+      <video:description>Tutustu vallankumoukselliseen kaavaamme nopeaan painonpudotukseen</video:description>
+      <video:content_loc>https://www.youtube.com/shorts/Dj-pfiIzB44</video:content_loc>
+      <video:publication_date>2025-05-27</video:publication_date>
+      <video:duration>60</video:duration>
+      <video:view_count>10000</video:view_count>
+      <video:category>Terveys</video:category>
+      <video:tag>laihdutuskapselit</video:tag>
+      <video:tag>painonpudotus</video:tag>
+      <video:author>Laihdutuskapselit Tiimi</video:author>
+      <video:license>https://www.clairvoyancemedium.com/ehdot</video:license>
+      <video:rating>5.0</video:rating>
+    </video:video>
+  </url>
 
-    <!-- 📰 Articles Google News -->
-    <url>
-        <loc>https://clairvoyancemedium.github.io/Comment-retrouver-l-amour-rapidement.github.io/news/nouvelle-technique-de-seduction/</loc>
-        <lastmod>2025-02-13</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.9</priority>
-        <news:news>
-            <news:publication>
-                <news:name>Voyance & Amour News</news:name>
-                <news:language>fr</news:language>
-            </news:publication>
-            <news:publication_date>2025-02-13</news:publication_date>
-            <news:title>Nouvelle Technique de Séduction Révélée</news:title>
-            <news:keywords>séduction, amour, relation</news:keywords>
-        </news:news>
-    </url>
+  <!-- Bloggseksjon -->
+  <url>
+    <loc>https://clairvoyancemedium.github.io/slankekapsler-for-rask-og-effektiv-vektnedgang.github.io/blogg/</loc>
+    <lastmod>2025-05-28T00:56:00Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <mobile:mobile/>
+    <image:image>
+      <image:loc>https://i.imgur.com/H69KvL6.png</image:loc>
+      <image:title>Slankeblogg</image:title>
+      <image:caption>Artikler om vektnedgang og sunn livsstil</image:caption>
+      <image:geo_location>Norge</image:geo_location>
+    </image:image>
+  </url>
 
-    <!-- 📱 Page optimisée pour mobile -->
-    <url>
-        <loc>https://clairvoyancemedium.github.io/Comment-retrouver-l-amour-rapidement.github.io/mobile/</loc>
-        <lastmod>2025-02-17</lastmod>
-        <changefreq>daily</changefreq>
-        <priority>0.9</priority>
-        <mobile:mobile/>
-    </url>
+  <!-- Pressemelding -->
+  <url>
+    <loc>https://clairvoyancemedium.github.io/slankekapsler-for-rask-og-effektiv-vektnedgang.github.io/blogg/pressemelding/</loc>
+    <lastmod>2025-05-28T00:56:00Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <mobile:mobile/>
+    <news:news>
+      <news:publication>
+        <news:name>Slankekapsler AS</news:name>
+        <news:language>no</news:language>
+      </news:publication>
+      <news:publication_date>2025-05-27</news:publication_date>
+      <news:title>Lansering av revolusjonære slankekapsler i Norge</news:title>
+      <news:keywords>slankekapsler, vektnedgang, naturlig, sunn, effektiv</news:keywords>
+      <news:genres>PressRelease</news:genres>
+    </news:news>
+    <image:image>
+      <image:loc>https://i.imgur.com/H69KvL6.png</image:loc>
+      <image:title>Pressemelding bilde</image:title>
+      <image:caption>Vår nye revolusjonerende slankekapsel</image:caption>
+      <image:geo_location>Norge</image:geo_location>
+    </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/Dj-pfiIzB44/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>Lansering av nye slankekapsler</video:title>
+      <video:description>Se vår nye revolusjonerende formel for vektnedgang</video:description>
+      <video:content_loc>https://www.youtube.com/shorts/Dj-pfiIzB44</video:content_loc>
+      <video:publication_date>2025-05-27</video:publication_date>
+      <video:duration>60</video:duration>
+      <video:view_count>10000</video:view_count>
+      <video:category>Helse</video:category>
+      <video:tag>slankekapsler</video:tag>
+      <video:tag>vektnedgang</video:tag>
+      <video:author>Slankekapsler Team</video:author>
+      <video:license>https://www.clairvoyancemedium.com/vilkår</video:license>
+      <video:rating>5.0</video:rating>
+    </video:video>
+  </url>
 
-    <!-- 📜 Pages légales -->
-    <url>
-        <loc>https://clairvoyancemedium.github.io/Comment-retrouver-l-amour-rapidement.github.io/mentions-legales/</loc>
-        <lastmod>2025-01-10</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.5</priority>
-    </url>
+  <!-- Spesifikk bloggartikkel -->
+  <url>
+    <loc>https://clairvoyancemedium.github.io/slankekapsler-for-rask-og-effektiv-vektnedgang.github.io/blogg/ny-artikkel/</loc>
+    <lastmod>2025-05-28T00:56:00Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <mobile:mobile/>
+    <news:news>
+      <news:publication>
+        <news:name>Slankekapsler AS</news:name>
+        <news:language>no</news:language>
+      </news:publication>
+      <news:publication_date>2025-05-27</news:publication_date>
+      <news:title>5 enkle tips for rask vektnedgang</news:title>
+      <news:keywords>vektnedgang, slanking, kosthold, trening, tips</news:keywords>
+      <news:genres>Blog</news:genres>
+    </news:news>
+    <image:image>
+      <image:loc>https://i.imgur.com/H69KvL6.png</image:loc>
+      <image:title>Vektnedgang tips</image:title>
+      <image:caption>Enkle råd for å oppnå vekttap</image:caption>
+      <image:geo_location>Norge</image:geo_location>
+    </image:image>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/Dj-pfiIzB44/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>Vekttapsguide for nybegynnere</video:title>
+      <video:description>Lær de grunnleggende prinsippene for sunn vektnedgang</video:description>
+      <video:content_loc>https://www.youtube.com/shorts/Dj-pfiIzB44</video:content_loc>
+      <video:publication_date>2025-05-27</video:publication_date>
+      <video:duration>60</video:duration>
+      <video:view_count>10000</video:view_count>
+      <video:category>Helse</video:category>
+      <video:tag>vektnedgang</video:tag>
+      <video:tag>sunn livsstil</video:tag>
+      <video:author>Slankekapsler Team</video:author>
+      <video:license>https://www.clairvoyancemedium.com/vilkår</video:license>
+      <video:rating>5.0</video:rating>
+    </video:video>
+  </url>
 
-    <url>
-        <loc>https://clairvoyancemedium.github.io/Comment-retrouver-l-amour-rapidement.github.io/cgv/</loc>
-        <lastmod>2025-01-10</lastmod>
-        <changefreq>yearly</changefreq>
-        <priority>0.5</priority>
-    </url>
-
+  <!-- Artikkelseksjon -->
+  <url>
+    <loc>https://clairvoyancemedium.github.io/slankekapsler-for-rask-og-effektiv-vektnedgang.github.io/artikler/</loc>
+    <lastmod>2025-05-28T00:56:00Z</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+    <mobile:mobile/>
+    <image:image>
+      <image:loc>https://i.imgur.com/H69KvL6.png</image:loc>
+      <image:title>Artikler om vektnedgang</image:title>
+      <image:caption>Dybdeartikler om sunn vektnedgang og ernæring</image:caption>
+      <image:geo_location>Norge</image:geo_location>
+    </image:image>
+  </url>
 </urlset>
