@@ -1,42 +1,283 @@
-# Indique aux robots que toutes les pages peuvent être explorées, sauf restrictions spécifiées
+# robots.txt v3.5 - 2025-05-28
+# Optimalisert for https://clairvoyancemedium.github.io/slankekapsler-for-rask-og-effektiv-vektnedgang.github.io/
+# Mål: Global SEO, hyppig indeksering, støtte for AI/voice assistants/sosiale medier, flerspråklig, maksimal beskyttelse
+
+# --- Generelle direktiver for alle legitime søkebotter ---
 User-agent: *
-Disallow: /admin/
-Disallow: /tmp/
-Disallow: /private/
+Allow: /
+Allow: /[a-z]{2}/  # Flerspråklige sider (/no/, /en/, /sv/, etc.)
+Allow: /vilkår/     # Offentlige vilkår
+Allow: /fonter/     # Skrifttyper for rendering
+Allow: /bilder/     # Bilder for indeksering
+Allow: /js/         # Interaktive skript
+Allow: /css/        # Mobiloptimalisert CSS
+Allow: /*.webp$     # WebP-bilder
+Allow: /*.jpg$      # JPG-bilder
+Allow: /*.png$      # PNG-bilder
+Allow: /*.gif$      # GIF-bilder
+Allow: /*.js$       # JavaScript-filer
+Allow: /*.css$      # CSS-filer
+Disallow: /csp-rapportering/  # Beskytt CSP
+Disallow: /kontakt/          # Kontaktside
+Disallow: /personvern/       # Personvernerklæring
+Disallow: /kasse/           # Transaksjonssider
+Disallow: /søk/             # Søkesider
+Disallow: /api/             # API-endepunkter
+Disallow: /test/            # Testmapper
+Disallow: /mellomlagring/    # Mellomlagringsmiljøer
+Clean-param: utm_source&utm_medium&utm_campaign&lang&session_id  # Tillat nyttige parametre
 
-# Bloquer des URL avec paramètres inutiles pour l'indexation
-Disallow: /*?debug=true
-Disallow: /*?preview=true
-
-# Permettre les fichiers nécessaires au bon affichage et fonctionnement
-Allow: /css/
-Allow: /js/
-Allow: /images/
-
-# Référencement des ressources multimédias
-Allow: *.png
-Allow: *.jpg
-Allow: *.webp
-Allow: *.css
-Allow: *.js
-
-# Fournir le chemin du fichier sitemap pour une meilleure indexation
-Sitemap: https://www.clairvoyancemedium.com/sitemap.xml
-
-# Autorisation pour les robots Google et Bing pour maximiser les campagnes publicitaires
+# --- Direktiver for Googlebot (Google, Google Assistant) ---
 User-agent: Googlebot
+Crawl-delay: 1
+Allow: /blogg/      # Rikt innhold for SEO
+Allow: /artikkel/   # Artikler for utdrag
+Clean-param: utm_source&utm_medium&utm_campaign&lang
+Disallow: /csp-rapportering/
+Disallow: /kontakt/
+Disallow: /personvern/
+Disallow: /kasse/
+
+# --- Direktiver for Googlebot-Image ---
+User-agent: Googlebot-Image
+Allow: /bilder/
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.png$
+Allow: /*.gif$
+Disallow: /favicon_optimalisert.webp  # Unngå favicon
+
+# --- Direktiver for Googlebot-Video ---
+User-agent: Googlebot-Video
+Crawl-delay: 1
 Allow: /
-User-agent: AdsBot-Google
-Allow: /
+Allow: /[a-z]{2}/
+Disallow: /csp-rapportering/
+Disallow: /kontakt/
+Disallow: /personvern/
+Disallow: /kasse/
+
+# --- Direktiver for Bingbot (Bing, Cortana) ---
 User-agent: Bingbot
+Crawl-delay: 2
+Allow: /blogg/
+Allow: /artikkel/
+Clean-param: utm_source&utm_medium&utm_campaign&lang
+Disallow: /csp-rapportering/
+Disallow: /kontakt/
+Disallow: /personvern/
+Disallow: /kasse/
+
+# --- Direktiver for Yandex (Yandex, Alice) ---
+User-agent: Yandex
+Crawl-delay: 3
+Allow: /blogg/
+Allow: /artikkel/
+Clean-param: utm_source&utm_medium&utm_campaign&lang&session_id
+Disallow: /csp-rapportering/
+Disallow: /kontakt/
+Disallow: /personvern/
+Disallow: /kasse/
+
+# --- Direktiver for Baiduspider (Kina) ---
+User-agent: Baiduspider
+Crawl-delay: 3
+Allow: /zh/        # Prioriter kinesisk
+Allow: /blogg/
+Allow: /artikkel/
+Clean-param: lang
+Disallow: /csp-rapportering/
+Disallow: /kontakt/
+Disallow: /personvern/
+Disallow: /kasse/
+Disallow: /api/
+Disallow: /test/
+Disallow: /mellomlagring/
+
+# --- Direktiver for Sogou (Kina) ---
+User-agent: Sogou
+Crawl-delay: 4
+Allow: /zh/
+Allow: /blogg/
+Allow: /artikkel/
+Clean-param: lang
+Disallow: /csp-rapportering/
+Disallow: /kontakt/
+Disallow: /personvern/
+Disallow: /kasse/
+Disallow: /api/
+Disallow: /test/
+Disallow: /mellomlagring/
+
+# --- Direktiver for Applebot (Siri, Apple) ---
+User-agent: Applebot
+Crawl-delay: 2
+Allow: /blogg/
+Allow: /artikkel/
+Clean-param: utm_source&utm_medium&utm_campaign&lang
+Disallow: /csp-rapportering/
+Disallow: /kontakt/
+Disallow: /personvern/
+Disallow: /kasse/
+
+# --- Direktiver for Amazonbot (Alexa, Amazon) ---
+User-agent: Amazonbot
+Crawl-delay: 3
+Allow: /blogg/
+Allow: /artikkel/
+Clean-param: utm_source&utm_medium&utm_campaign&lang
+Disallow: /csp-rapportering/
+Disallow: /kontakt/
+Disallow: /personvern/
+Disallow: /kasse/
+
+# --- Direktiver for Naverbot (Japan/Korea) ---
+User-agent: Naverbot
+Crawl-delay: 3
+Allow: /ja/        # Prioriter japansk
+Allow: /ko/        # Prioriter koreansk
+Allow: /blogg/
+Allow: /artikkel/
+Clean-param: lang
+Disallow: /csp-rapportering/
+Disallow: /kontakt/
+Disallow: /personvern/
+Disallow: /kasse/
+
+# --- Direktiver for SeznamBot (Tsjekkia) ---
+User-agent: SeznamBot
+Crawl-delay: 3
+Allow: /cs/        # Prioriter tsjekkisk
+Allow: /blogg/
+Allow: /artikkel/
+Clean-param: lang
+Disallow: /csp-rapportering/
+Disallow: /kontakt/
+Disallow: /personvern/
+Disallow: /kasse/
+
+# --- Direktiver for Qwantify (Qwant, Europa) ---
+User-agent: Qwantify
+Crawl-delay: 4
+Allow: /fr/        # Prioriter fransk
+Allow: /blogg/
+Allow: /artikkel/
+Clean-param: lang
+Disallow: /csp-rapportering/
+Disallow: /kontakt/
+Disallow: /personvern/
+Disallow: /kasse/
+
+# --- Direktiver for DuckDuckGoBot (Globalt) ---
+User-agent: DuckDuckGoBot
+Crawl-delay: 2
 Allow: /
+Allow: /[a-z]{2}/
+Allow: /blogg/
+Allow: /artikkel/
+Clean-param: utm_source&utm_medium&utm_campaign&lang
+Disallow: /csp-rapportering/
+Disallow: /kontakt/
+Disallow: /personvern/
+Disallow: /kasse/
 
-# Bloquer les robots nuisibles ou non désirés
-User-agent: BadBot
-Disallow: /
-User-agent: EvilScraper
+# --- Direktiver for JioSphere (India) ---
+User-agent: JioSphere
+Crawl-delay: 3
+Allow: /hi/        # Prioriter hindi
+Allow: /blogg/
+Allow: /artikkel/
+Clean-param: lang
+Disallow: /csp-rapportering/
+Disallow: /kontakt/
+Disallow: /personvern/
+Disallow: /kasse/
+
+# --- Direktiver for samtale-AI-botter ---
+User-agent: Grok
+User-agent: ChatGPT-User
+User-agent: GPTBot
+User-agent: openai-crawler
+User-agent: ClaudeBot
+User-agent: anthropic-ai
+User-agent: cohere-ai
+User-agent: PerplexityBot
+User-agent: CCBot
+User-agent: youbot
+User-agent: phindbot
+User-agent: GeminiBot  # Google AI
+Crawl-delay: 4
+Allow: /
+Allow: /[a-z]{2}/
+Allow: /blogg/      # Samtaleutdrag
+Allow: /artikkel/
+Allow: /bilder/
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.png$
+Allow: /*.gif$
+Clean-param: utm_source&utm_medium&utm_campaign&lang
+Disallow: /csp-rapportering/
+Disallow: /kontakt/
+Disallow: /personvern/
+Disallow: /kasse/
+Disallow: /api/
+Disallow: /test/
+Disallow: /mellomlagring/
+
+# --- Direktiver for sosiale medier-botter ---
+User-agent: FacebookBot
+User-agent: Twitterbot
+User-agent: redditbot
+User-agent: TikTokBot  # Fremvoksende sosiale medier
+Crawl-delay: 2
+Allow: /
+Allow: /[a-z]{2}/
+Allow: /blogg/      # Forhåndsvisninger
+Allow: /artikkel/
+Allow: /bilder/
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.png$
+Allow: /*.gif$
+Clean-param: utm_source&utm_medium&utm_campaign&lang
+Disallow: /csp-rapportering/
+Disallow: /kontakt/
+Disallow: /personvern/
+Disallow: /kasse/
+
+# --- Blokker uønskede botter ---
+User-agent: MJ12bot
+User-agent: AhrefsBot
+User-agent: PetalBot
+User-agent: DotBot
 Disallow: /
 
-# Empêcher l'exploration des fichiers sensibles
-Disallow: /config/
-Disallow: /backup/
+# --- Tillat SemrushBot for SEO-audits ---
+User-agent: SemrushBot
+Crawl-delay: 5
+Allow: /
+Allow: /[a-z]{2}/
+Allow: /blogg/
+Allow: /artikkel/
+Allow: /bilder/
+Allow: /*.webp$
+Allow: /*.jpg$
+Allow: /*.png$
+Allow: /*.gif$
+Clean-param: utm_source&utm_medium&utm_campaign&lang
+Disallow: /csp-rapportering/
+Disallow: /kontakt/
+Disallow: /personvern/
+Disallow: /kasse/
+
+# --- Beskyttelse mot ukjente botter ---
+User-agent: *
+Disallow: /  # Blokker som standard med mindre eksplisitt tillatt
+
+# --- Optimalisering av indeksering ---
+Crawl-delay: 1
+Request-rate: 1/4  # 1 forespørsel/4s for rask indeksering
+
+# --- Sitemap index ---
+Sitemap: https://clairvoyancemedium.github.io/slankekapsler-for-rask-og-effektiv-vektnedgang.github.io/sitemap-index.xml
