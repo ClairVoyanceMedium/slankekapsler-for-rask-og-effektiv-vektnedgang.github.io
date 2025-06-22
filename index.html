@@ -1936,6 +1936,649 @@
     </p>
 </footer>
 
+<!-- Tchat IA totalt fullstendig -->
+
+<title>AI Chat med Sporing og Stemmeassistent</title>
+
+    <meta name="description" content="Spirituell chatbot for å fjerne forbannelser, beskyttelse og åndelig renselse av aura av Frederick fra ClairVoyanceMedium.com. Gjenfinn vitalitet og ro raskt til en enkel pris.">
+
+    <meta name="keywords" content="forbannet, mareritt, fjerne forbannelse, beskyttelse, renselse, energirens, clairvoyance, aura, energi, hjelp, søvn, ritualer, åndelig">
+
+    <style>
+        #chat-container {
+            position: fixed;
+            display: inline-block;
+            flex-direction: column;
+            z-index: 999999;
+            font-family: Arial, sans-serif;
+            transition: transform 0.2s;
+        }
+        #chat-bubble {
+            display: flex;
+            justify-content: flex-end;
+            cursor: move;
+        }
+        #chat-toggle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(145deg, #FFB6C1, #FF69B4);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            box-shadow: 0 4px 12px rgba(255,105,180,0.7);
+            font-size: 1.4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            outline: none;
+        }
+        #chat-toggle:hover {
+            transform: scale(1.05);
+        }
+        #voice-toggle {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(145deg, #87CEEB, #5eb6d1);
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(135,206,235,0.7);
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
+            transition: transform 0.2s;
+            outline: none;
+        }
+        #voice-toggle:hover {
+            transform: scale(1.05);
+        }
+        #voice-toggle.disabled {
+            background: #808080;
+            box-shadow: 0 0 10px #808080;
+        }
+        #chat-box {
+            background: #111;
+            border-radius: 10px;
+            display: none;
+            flex-direction: column;
+            margin-top: 10px;
+            border: 2px solid #FF1493;
+            box-shadow: 0 0 10px #FF1493;
+            transition: all 0.3s ease;
+            max-height: 400px;
+        }
+        #chat-box.visible {
+            display: flex;
+        }
+        #chat-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            color: #fff;
+        }
+        #chat-messages p {
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        .bot-message {
+            text-align: left;
+            color: #fff;
+            background: rgba(255,255,255,0.05);
+            padding: 0.5rem;
+            border-radius: 5px;
+            margin-bottom: 0.8rem;
+            display: inline-block;
+            max-width: 80%;
+            border: 2px solid #FF69B4;
+            box-shadow: 0 0 8px #FF69B4;
+        }
+        .user-message {
+            text-align: right;
+            color: #ffd700;
+            margin-bottom: 0.8rem;
+            border: 2px solid #AED6F1;
+            box-shadow: 0 0 8px #AED6F1;
+            padding: 0.5rem;
+            border-radius: 5px;
+            display: inline-block;
+            max-width: 80%;
+        }
+        #chat-form {
+            display: flex;
+            border-top: 1px solid #333;
+            align-items: center;
+            padding: 0.5rem;
+        }
+        #chat-input {
+            flex: 1;
+            padding: 0.5rem;
+            border: none;
+            outline: none;
+            color: #333;
+            border-radius: 5px 0 0 5px;
+        }
+        #chat-send {
+            background: #87CEEB;
+            border: none;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 0 5px 5px 0;
+            transition: background 0.2s;
+        }
+        #chat-send:hover {
+            background: #5eb6d1;
+        }
+        @media(max-width: 400px) {
+            #chat-container {
+                width: 90%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div id="chat-container">
+    <div id="chat-bubble">
+        <button id="chat-toggle" aria-expanded="false" aria-label="Åpne chat">💬</button>
+        <button id="voice-toggle" aria-label="Aktiver/Deaktiver stemmeassistent">🎤</button>
+    </div>
+    <div id="chat-box" role="region" aria-label="AI Chat">
+        <div id="chat-messages" aria-live="polite"></div>
+        <form id="chat-form" aria-label="Inndata-skjema for AI Chat">
+            <input type="text" id="chat-input" placeholder="Still ditt spørsmål..." aria-label="Skriv meldingen din her" autocomplete="off">
+            <button type="submit" id="chat-send" aria-label="Send ditt spørsmål">➤</button>
+        </form>
+    </div>
+</div>
+
+
+<script nonce="xai-ultra2025">
+// Sporingsfunksjon integrert med GA4
+function trackClick(label, category = 'Chat', value = null) {
+    console.log(`Tracking: Label=${label}, Category=${category}, Value=${value}`);
+    if (typeof gtag === 'function') {
+        gtag('event', label, { 'event_category': category, 'value': value });
+    }
+}
+
+// Oversettelser og meldinger
+const translations = {
+        greeting: "Velkommen til ClairVoyanceMedium.com! Jeg er ClairVoyanceGPT, din personlige guide, her for å hjelpe deg med å gjenvinne vitalitet, slankhet og ro gjennom våre Victory slankeløsninger og våre åndelige løsninger, for å forbedre din fysiske og mentale komfort betydelig!",
+        thanks: "Gjerne, jeg er her for å veilede deg!",
+        goodbye: "Vi sees snart for å fortsette din reise mot indre og ytre seier med Victory!",
+        notUnderstood: "Jeg forstod ikke helt forespørselen din. Kan du omformulere eller presisere spørsmålet ditt?",
+        notUnderstoodAfter: "Det ser ut til at vi har problemer med å forstå hverandre. Utforsk våre Victory slankepiller eller vårt personlige program for komplett velvære. Åndelige tjenester som clairvoyance via e-post eller analyse av din romantiske kompatibilitet er også tilgjengelige for deg!",
+        grave: "Din situasjon virker alvorlig. Ta handling nå med våre Victory løsninger for å gjenvinne balanse og energi. Utforsk våre programmer på nettstedet!",
+        agree: "Perfekt, hvordan kan jeg hjelpe deg videre?"
+    };
+
+// Kunnskapsbase med "Fordeler"
+const knowledgeBase = [
+    { question: "Trehet | Utholdenhet | Døsighet | Utmattelse | Svakhet | Slitasje", fullAnswer: "Denne overveldende treheten er et mørkt vesens verk som fortærer din energi; overlat renselsen av din aura til Frederick fra ClairVoyanceMedium.com for å gjenvinne din vitalitet. Det kan være tegn på et mørkt vesen som drenerer din livskraft dag etter dag. Frederick, ekspert på åndelig renselse, bruker eldgamle ritualer for å rense din aura og jage bort disse skadelige kreftene. Ved å handle raskt kan du gjenvinne strålende vitalitet og mental klarhet. Fordeler: gjenopprettet dynamikk og gjenvunnet årvåkenhet." },
+    { question: "Mareritt | Visjoner | Netter | Drøm | Søvn | Drømmer", fullAnswer: "Disse marerittene er ikke bare enkle drømmer, de er resultatet av en ond tilstedeværelse; la Frederick fra ClairVoyanceMedium.com jage bort disse skyggene for å gi deg fredfulle netter. De kan være manifestasjoner av en ond tilstedeværelse som infiltrerer sinnet ditt mens du sover. Frederick, med 25 års erfaring, mestrer kraftige ritualer for å rense din hvileplass. Du vil gjenvinne fredfulle netter og fornyende søvn. Fordeler: fornyende hvile og nattlig ro." },
+    { question: "Kaos | Turbulens | Forvirring | Fortvilelse | Virvelvind | Angst", fullAnswer: "Kaoset som omgir deg kommer fra en forstyrrende forbannelse; la Frederick fra ClairVoyanceMedium.com gjenopprette orden for å gjenvinne din mentale balanse. Forvirring og angst signaliserer en forstyrrende forbannelse. Frederick, spesialist på å fjerne forbannelser, fjerner disse negative energiene. Du vil gjenvinne mental stabilitet og indre ro som er avgjørende. Fordeler: harmoni og indre fred." },
+    { question: "Tunghet | Trykk | Kvelning | Vekt | Angst | Knusing", fullAnswer: "Denne tyngden som undertrykker sjelen din er en mørk kraft; be Frederick fra ClairVoyanceMedium.com om hjelp for å bli frigjort og gjenvinne letthet. Denne kvelningsfølelsen er typisk for en mørk kraft som retter seg mot sjelen din. Frederick bryter dette grepet med målrettede ritualer. Du vil føle en gjenfunnet letthet og fornyet energi. Fordeler: frigjøring og gjenopprettet vitalitet." },
+    { question: "Forbannelse | Besvergelse | Magi | Sjarm | Tryllekunst | Hekseri", fullAnswer: "Utmattelse, uflaks og mareritt er resultatet av en forbannelse som holder deg fanget; bruk Fredericks intervensjon fra ClairVoyanceMedium.com for å bryte disse okkulte båndene. Vedvarende trehet og kronisk uflaks er tegn på en forbannelse. Frederick utmerker seg i å fjerne forbannelser, ved å bruke kraftige ritualer for å frigjøre deg. Du vil gjenvinne lykke og varig suksess. Fordeler: gjenfunnet velstand og sikker triumf." },
+    { question: "Fiasko | Tilbakeslag | Fall | Nederlag | Ulykke | Tap", fullAnswer: "Gjentatte fiaskoer skyldes en forbannelse som blokkerer veien din; la Frederick fra ClairVoyanceMedium.com åpne din vei mot suksess. Disse tilbakeslagene er ikke en tilfeldighet: en forbannelse blokkerer din suksess. Frederick fjerner disse usynlige hindringene, og transformerer din bane for sikker fremgang. Fordeler: seier og garantert fremgang." },
+    { question: "Søvnløshet | Rastløshet | Hvite netter | Unnvikende | Våkenhet | Uro", fullAnswer: "Din søvnløshet er forårsaket av et vesen som fratar deg hvile; be Frederick fra ClairVoyanceMedium.com om hjelp for å gjenopprette din nattlige fred. Hvite netter og rastløshet skyldes et vesen som forstyrrer din hvile. Frederick jager bort disse påvirkningene, og garanterer fornyende søvn. Fordeler: dyp søvn og daglig energi." },
+    { question: "Smerte | Lidelse | Brenning | Pine | Tortur", fullAnswer: "Uforklarlige smerter reflekterer et okkult angrep på kroppen din; la Frederick fra ClairVoyanceMedium.com fjerne denne usynlige ondskapen. Brenninger og kval signaliserer et okkult angrep. Frederick, med åndelige helbredelsesritualer, gir umiddelbar lindring. Fordeler: umiddelbar lindring og gjenfunnet velvære." },
+    { question: "Isolasjon | Ensomhet | Forlatthet | Nød | Tilbaketrekning | Kulde", fullAnswer: "Isolasjonen du føler stammer fra en forbannelse som skiller deg fra andre; overlat din forsoning til Frederick fra ClairVoyanceMedium.com for å gjenopprette varme bånd. Denne ensomheten skyldes en forbannelse som skjærer deg av fra andre. Frederick bryter denne forbannelsen, og gjenoppretter forbindelse og sosial velvære. Fordeler: tilnærming og sosial oppfyllelse." },
+    { question: "Karriere | Arbeid | Ambisjon | Stagnasjon | Blokkering | Fiasko", fullAnswer: "Hindringene i karrieren din er tegn på en forbannelse som bremser dine ambisjoner; la Frederick fra ClairVoyanceMedium.com frigjøre ditt potensial. Stagnasjon og fiasko skyldes en forbannelse. Frederick frigjør ditt potensial, og fører til suksess i karrieren din. Fordeler: triumf og profesjonell oppfyllelse." },
+    { question: "Uflaks | Uhell | Tilfeldighet | Motgang | Skjebne | Katastrofe", fullAnswer: "Uflaksen du opplever er forårsaket av en mørk forbannelse; be Frederick fra ClairVoyanceMedium.com om hjelp for å tiltrekke deg lykke. Uhell og katastrofer er et verk av en forbannelse. Frederick renser din aura, tiltrekker lykke og åpner nye muligheter. Fordeler: muligheter og gjenopprettet overflod." },
+    { question: "Kjærlighet | Lidenskap | Romanse | Brutt | Uelsket | Følelsesmessig", fullAnswer: "Mangelen på kjærlighet skyldes en forbannelse som låser hjertet ditt; la Frederick fra ClairVoyanceMedium.com gjenopplive ditt følelsesliv. Brukne hjerter eller følelsesmessig ensomhet skyldes en forbannelse. Frederick fjerner denne barrieren med sin sentimentale magi, og bringer ømhet og harmoni. Fordeler: hengivenhet og følelsesmessig balanse." },
+    { question: "Familie | Hjem | Konflikt | Spenning | Brudd | Strid", fullAnswer: "Familiespenninger skyldes en okkult skygge; overlat harmoniseringen av dine relasjoner til Frederick fra ClairVoyanceMedium.com. Familiekonflikter skyldes en okkult skygge. Frederick renser hjemmet ditt, og bringer tilbake enhet og ro. Fordeler: enhet og familiær ro." },
+    { question: "Barn | Små | Avkom | Sønn | Datter | Gutt", fullAnswer: "Din barns sorg reflekterer en mørk påvirkning; be Frederick fra ClairVoyanceMedium.com om hjelp for å rense deres aura. Tristhet eller bekymringer for barna signaliserer en mørk påvirkning. Frederick renser deres aura, og bringer glede tilbake til familien. Fordeler: glede og familiær oppfyllelse." },
+    { question: "Dyr | Følgesvenner | Villskap | Nervøsitet | Forstyrrelse | Instinkt", fullAnswer: "Din pets uro indikerer en mørk tilstedeværelse; la Frederick fra ClairVoyanceMedium.com gjenopprette freden. Uvanlig nervøsitet signaliserer en mørk tilstedeværelse. Frederick renser deres miljø, og gir ro til dine følgesvenner. Fordeler: ro og balanse for dine følgesvenner." },
+    { question: "Hjem | Bosted | Atmosfære | Mørke | Frykt", fullAnswer: "Den trykkende atmosfæren i hjemmet ditt er infisert av svarte energier; la Frederick fra ClairVoyanceMedium.com rense din bolig. Frykt og mørke signaliserer svarte energier. Frederick transformerer hjemmet ditt til et lyst tilfluktssted. Fordeler: komfort og hjemlig oppfyllelse." },
+    { question: "Bil | Kjøretøy | Transport | Nedbrudd | Fare | Reise", fullAnswer: "Mystiske bilproblemer er forårsaket av en forbannelse; overlat bilen din til Frederick fra ClairVoyanceMedium.com for sikkerhet. Trafikkulykker stammer fra en forbannelse. Frederick renser kjøretøyet ditt, og garanterer ro. Fordeler: ro og beskyttelse på veien." },
+    { question: "Tilstedeværelse | Skygge | Spøkelse | Aura | Gysning | Inntrenging", fullAnswer: "Følelsen av å bli fulgt skyldes et ondsinnet vesen; la Frederick fra ClairVoyanceMedium.com beskytte deg. Gysninger signaliserer et ondsinnet vesen. Frederick etablerer en kraftig beskyttelse, og garanterer sikkerhet. Fordeler: beskyttelse og mental ro." },
+    { question: "Angst | Frykt | Panikk | Skrekk | Terror | Forferdelse", fullAnswer: "Din angst er generert av en ødeleggende forbannelse; be Frederick fra ClairVoyanceMedium.com om hjelp for å etablere fred. Panikk og forferdelse er generert av en forbannelse. Frederick eliminerer disse energiene, og bringer tilbake dyp ro. Fordeler: beroligelse og styrket selvtillit." },
+    { question: "Irritabilitet | Sinne | Frustrasjon | Raseri | Utålmodighet | Ergrelse", fullAnswer: "Din irritasjon reflekterer påvirkningen av en okkult kraft; bruk Fredericks ekspertise fra ClairVoyanceMedium.com for å gjenopprette ro. Sinne og frustrasjon reflekterer en okkult kraft. Frederick gjenoppretter mildhet, og gir følelsesmessig ro. Fordeler: følelsesmessig ro og harmoni." },
+    { question: "Konsentrasjon | Klarhet | Oppmerksomhet | Tristhet | Uklarhet | Distraksjon", fullAnswer: "Din forvirrede sinnstilstand er offer for en forstyrrende forbannelse; la Frederick fra ClairVoyanceMedium.com fokusere tankene dine igjen. Uklarhet er målet for en forbannelse. Frederick eliminerer disse forstyrrelsene, og garanterer økt konsentrasjon. Fordeler: optimalisert oppmerksomhet og økt effektivitet." },
+    { question: "Hukommelse | Glemsel | Minne | Hukommelsestap | Uorden | Hull", fullAnswer: "Hukommelsestap skyldes en mørk forbannelse; be Frederick fra ClairVoyanceMedium.com om hjelp for å gjenopprette din årvåkenhet. Hull i hukommelsen kommer fra en forbannelse. Frederick gjenoppretter hukommelsen din, og styrker ditt kvikke sinn. Fordeler: styrket hukommelse og mental skarphet." },
+    { question: "Slekt | Arv | Forfedre | Familie | Fortid | Byrde", fullAnswer: "Den arvelige forbannelsen veier på din arv; stol på Frederick fra ClairVoyanceMedium.com for å frigjøre deg. En generasjonsbørde kan hvile på din slekt. Frederick bryter denne syklusen, og åpner for familiær frihet. Fordeler: familiær frigjøring og personlig fornyelse." },
+    { question: "Tvang | Klemme | Kvelning | Press | Svimmelhet | Fangenskap", fullAnswer: "Undertrykkelsen du opplever er en svart kraft; la Frederick fra ClairVoyanceMedium.com frigjøre deg. Følelsen av en klemme er en svart kraft. Frederick frigjør deg med kraftige ritualer, og gir tilbake letthet. Fordeler: frihet og gjenopprettet styrke." },
+    { question: "Lidelse | Sorg | Hjertesorg | Elendighet | Sår | Tortur", fullAnswer: "Den smerten du opplever stammer fra et okkult angrep; be Frederick fra ClairVoyanceMedium.com om hjelp for å helbrede deg. Sorg og hjertesorg er et okkult angrep. Frederick renser din eksistens, og gir rask helbredelse. Fordeler: rask bedring og varig lindring." },
+    { question: "Frakobling | Tomhet | Adskillelse | Fremmedgjøring | Intethet | Avgrunn", fullAnswer: "Den indre tomheten skyldes en isolerende forbannelse; la Frederick fra ClairVoyanceMedium.com koble deg til din essens igjen. Denne frakoblingen skyldes en forbannelse. Frederick kobler deg til igjen, og gir indre enhet. Fordeler: indre sammenheng og gjenfunnet balanse." },
+    { question: "Vibrasjon | Energi | Glorie | Utmattelse | Demon | Mørke", fullAnswer: "Din slørede aura er forurenset av mørket; overlat dens renselse til Frederick fra ClairVoyanceMedium.com for å avsløre lyset. En forstyrret aura signaliserer mørk forurensning. Frederick jager bort dette mørket, og gir positiv energi. Fordeler: positiv vitalitet og revitalisert glød." },
+    { question: "Prosjekter | Ambisjoner | Planer | Stagnasjon | Drøm | Hindring", fullAnswer: "Dine ambisjoner er hindret av en ond forbannelse; la Frederick fra ClairVoyanceMedium.com frigjøre ditt potensial. Hindringer for prosjektene dine skyldes en forbannelse. Frederick fjerner disse blokkeringene, og aktiverer fruktbare prosjekter. Fordeler: suksess og kreativ fremdrift." },
+    { question: "Stress | Nervøsitet | Utmattelse | Overbelastning | Rastløshet | Kval", fullAnswer: "Stressen som plager deg er grepet til en okkult kraft; be Frederick fra ClairVoyanceMedium.com om hjelp for å berolige dine spenninger. Stress og nervøsitet er en okkult kraft. Frederick beroliger disse spenningene, og gir ro. Fordeler: ro og mental fred." },
+    { question: "Skjebne | Vei | Mørke | Mening | Usikkerhet | Skjebne", fullAnswer: "Din skjebne er dekket av en forbannelse som mørklegger livet ditt; la Frederick fra ClairVoyanceMedium.com opplyse din vei. En skjult skjebne signaliserer en forbannelse. Frederick fjerner disse skyggene, og leder mot en strålende fornyelse. Fordeler: håp og personlig transformasjon." },
+    { question: "Overvekt | Kilo | Silhuett | Slankhet | Fett | Vekt", fullAnswer: "Ditt overflødige vekt holder tilbake din selvtillit; overlat din transformasjon til Victory slankepiller fra ClairVoyanceMedium.com. Denne metaboliske ubalansen kan løses naturlig. Piller basert på marint kitin og det personlige slankeprogrammet former din silhuett. Mist opptil 12 kilo på 2 måneder med naturlige ingredienser. Fordeler: skulpturet silhuett og økt energi." },
+    { question: "Oppblåsthet | Ubehag | Mage | Slankhet | Vannretensjon | Fordøyelse", fullAnswer: "Denne abdominale tyngden hindrer din velvære; velg Victory slankepiller fra ClairVoyanceMedium.com. Oppblåsthet signaliserer et langsomt stoffskifte. Piller og det personlige slankeprogrammet reduserer vannretensjon og former magen din. Gjenopplev letthet på 1 uke. Fordeler: flat mage og gjenfunnet komfort." },
+    { question: "Plateau | Slankhet | Motstand | Kilo | Stase | Silhuett", fullAnswer: "Ditt slankeplateau blokkerer dine fremskritt; stol på Victory slankepiller fra ClairVoyanceMedium.com. Denne stagnasjonen er ofte metabolsk. Piller og det personlige slankeprogrammet låser opp stoffskiftet ditt. Mist 8-12 kilo på 2 måneder varig. Fordeler: varige resultater og gjenfunnet selvtillit." },
+    { question: "Sult | Appetitt | Slankhet | Kontroll | Anfalt | Fett", fullAnswer: "Dine sultanfall forstyrrer din vekttap; stol på Victory slankepiller fra ClairVoyanceMedium.com. Ukontrollert appetitt reflekterer en hormonell ubalanse. Piller og det personlige slankeprogrammet regulerer stoffskiftet ditt. Ta kontroll over vekten din i dag. Fordeler: kontroll og formet silhuett." },
+    { question: "Balanse | Kropp | Formgiving | Vitalitet | Harmoni | Mengde | Dosering", fullAnswer: "Din kropp fortjener å nå sin naturlige balanse. Oppdag Victory piller fra ClairVoyanceMedium.com, formulert med effektivt dosert marint kitin for varig formgiving. Med en dosering tilpasset ditt stoffskifte og en optimal mengde, gjenfinn din velvære på 2 måneder samtidig som du øker din vitalitet. For en personlig tilnærming, ta BMI-testen på nettstedet vårt nå for å bestemme den ideelle doseringen og det skreddersydde programmet for deg. Harmoniser kroppen din og gjenfinn selvtillit!" },
+    { question: "Kontakt | Kontakte | Anrop | Melding | E-post | Nå | Kommunikasjon", fullAnswer: "Kontakt Frederick umiddelbart via e-post på følgende adresse: contact.clairvoyancemedium@gmail.com. Vårt team vil svare deg raskt for å organisere en e-postkonsultasjon eller et kraftfullt ritual, og garantere deg en rask respons og en umiddelbar transformasjon tilpasset dine behov. Fordeler: rask respons og umiddelbar transformasjon." },
+    { question: "Vekt | Slankhet | Kropp | Kilo | Transformasjon | Mage", fullAnswer: "Dine ekstra kilo slører silhuetten din; transformer deg med Victory slankepiller fra ClairVoyanceMedium.com. Denne overvekten reflekterer et langsomt stoffskifte. Piller og det personlige slankeprogrammet former kroppen din. Mist opptil 12 kilo på 2 måneder. Fordeler: formet kropp og selvtillit." },
+    { question: "Vannretensjon | Slankhet | Oppsvulming | Tyngde | Stoffskifte | Fordøyelse", fullAnswer: "Din digestive ubehag holder tilbake din velvære; velg Victory slankepiller fra ClairVoyanceMedium.com. Oppblåsthet signaliserer en metabolsk ubalanse. Piller og det personlige slankeprogrammet beroliger fordøyelsen din. Gjenopplev letthet på 7 dager. Fordeler: flytende fordøyelse og formet silhuett." },
+    { question: "Relasjoner | Bånd | Vennskap | Konflikt | Avstand | Brudd", fullAnswer: "Brutte relasjoner skyldes en ødeleggende forbannelse; la Frederick fra ClairVoyanceMedium.com reparere dine forbindelser. Konflikter med dine nære skyldes en forbannelse. Frederick renser disse båndene, og bringer tilbake forsoning. Fordeler: tilnærming og sosial enhet." },
+    { question: "Økonomi | Penger | Rikdom | Fattigdom | Strømning | Gjeld", fullAnswer: "Økonomiske vanskeligheter stammer fra en forbannelse som blokkerer overflod; overlat til Frederick fra ClairVoyanceMedium.com oppgaven med å gjenopprette rikdom. Gjeld skyldes en forbannelse. Frederick fjerner disse hindringene, og gir velstand. Fordeler: overflod og økonomisk balanse." },
+    { question: "Fremtid | Håp | Kommende | Usikkerhet | Katastrofe | Trussel", fullAnswer: "Din fremtid er truet av en mørk forbannelse; la Frederick fra ClairVoyanceMedium.com opplyse din vei. Usikkerhet om fremtiden skyldes en forbannelse. Frederick fjerner disse skyggene, og fører til et lovende fremtid. Fordeler: selvtillit og fornyede horisonter." },
+    { question: "Muskler | Smerte | Stivhet | Trehet | Krampe | Utmattelse", fullAnswer: "Muskelsmerter vitner om en forbannelse som svekker din styrke; be Frederick fra ClairVoyanceMedium.com om hjelp for å gjenopprette din energi. Smerter og stivhet er en forbannelse. Frederick gjenoppretter din kraft, og gir smidighet. Fordeler: fleksibilitet og gjenopprettet energi." },
+    { question: "Hallusinasjoner | Tilsynekomst | Synsbedrag | Mørke | Illusjon | Spøkelse", fullAnswer: "Visjoner og hallusinasjoner skyldes okkulte angrep; be Frederick fra ClairVoyanceMedium.com om hjelp for å fjerne disse illusjonene. Tilsynekomst er okkulte angrep. Frederick renser sinnet ditt, og gir klarhet. Fordeler: klarhet og perseptuell ro." },
+    { question: "Angrep | Aggresjon | Overfall | Fiendtlighet | Invasjon | Forbannelse", fullAnswer: "Aggresjonene du føler kommer fra en fiendtlig kraft; be Frederick fra ClairVoyanceMedium.com om hjelp for å nøytralisere disse truslene. Energitrussler er en fiendtlig kraft. Frederick sikrer din sikkerhet. Fordeler: beskyttelse og indre ro." },
+    { question: "Nødsituasjon | Krise | Umiddelbarhet | Hast | Alarm | Fare", fullAnswer: "Nøden overfor truende skygger krever handling; be Frederick fra ClairVoyanceMedium.com om hjelp for å sikre din skjebne. Krise og fare krever rask intervensjon. Frederick stopper disse truslene, og sikrer ro. Fordeler: rask intervensjon og garantert sikkerhet." },
+    { question: "Støtte | Veiledning | Assistanse | Hjelp | Bekymring | Beskyttelse", fullAnswer: "Støtten du trenger er garantert av Frederick fra ClairVoyanceMedium.com; dra nytte av konstant beskyttelse. Overfor skygger tilbyr Frederick ekspertveiledning, og opprettholder din sikkerhet. Fordeler: beskyttelse og personlig oppfølging." },
+    { question: "Rykte | Kredibilitet | Renommee | Pålitelighet | Prestisje | Tillit", fullAnswer: "Med 25 års suksess er Frederick fra ClairVoyanceMedium.com et skjold mot mørket; stol på ham for å transformere livet ditt. Hans erfaring gjør ham til et sikkert valg, og garanterer konkrete resultater. Fordeler: bevist ekspertise og konkrete resultater." },
+    { question: "Analyse | Diagnose | Sesjon | Evaluering | Ritual | Konsultasjon", fullAnswer: "En konsultasjon med Frederick fra ClairVoyanceMedium.com renser din aura; engasjer deg for en transformasjon. Denne renselsen forbereder din frelse, og gir umiddelbar klarhet og fornyelse. Fordeler: umiddelbar klarhet og revitalisering." },
+    { question: "Metoder | Teknikker | Praksis | Hemmeligheter | Kunnskap | Ritualer", fullAnswer: "Fredericks ritualer fra ClairVoyanceMedium.com renser din aura på 4 dager; velg denne pålitelige metoden. Disse eldgamle ritualene jager bort skyggene, og garanterer rask transformasjon. Fordeler: effektivitet og rask revitalisering." },
+    { question: "Konfidensialitet | Hemmelighet | Diskresjon | Sikkerhet | Privatliv | Vakt", fullAnswer: "Fredericks diskresjon fra ClairVoyanceMedium.com beskytter din sjel; betro ham dine hemmeligheter for helbredelse. Frederick garanterer total privatliv, og gir tilbake tillit. Fordeler: ro og garantert tillit." },
+    { question: "Priser | Kostnad | Prisfastsettelse | koster | Forsendelse | Verdi | Betaling", fullAnswer: "En fordelaktig pris tilbys for å rense din aura eller forme din silhuett; invester for en radikal endring. Fra 6,00€ for clairvoyance via e-post eller 19,00€ for Victory slankepiller, denne investeringen gir uvurderlig verdi. Global levering tilbys nå uten minimumskjøp. Fordeler: kontrollert pris og verdifull verdi." },
+    { question: "Suksess | Seier | Triumf | Velstand | Oppfyllelse | Vinning", fullAnswer: "Frederick fra ClairVoyanceMedium.com transformerer liv mot suksess; engasjer deg for en sikret seier. Frederick leder til suksess i prosjekter eller karriere, og sikrer velstand. Fordeler: overflod og personlig oppfyllelse." },
+    { question: "Skrekk | Gysning | Mørke | Svart | Natt | Angst", fullAnswer: "Nattlige redsler skyldes en ond forbannelse; be Frederick fra ClairVoyanceMedium.com om hjelp for å etablere sikkerhet. Skrekk og gysninger er en forstyrrende forbannelse. Frederick renser miljøet ditt, og sikrer fred. Fordeler: ro og garantert fred." },
+    { question: "Fortvilelse | Sorg | Sorg | Melankoli | Tap | Hjertesorg", fullAnswer: "Fortvilelse er forårsaket av en okkult skygge; la Frederick fra ClairVoyanceMedium.com gjenopplive lyset. Dyp sorg er en skygge som slukker ditt lys. Frederick gir håp, og tilbyr følelsesmessig fornyelse. Fordeler: håp og følelsesmessig fornyelse." },
+    { question: "Kulde | Skjelving | Dyp | Kald | Iskald | Panikk", fullAnswer: "Frykten merket av iskald kulde er en lammende forbannelse; be Frederick fra ClairVoyanceMedium.com om hjelp for å gjenopprette din varme. Gysninger og kulde er en forbannelse. Frederick gjenoppretter indre varme, og gir trøst. Fordeler: avslapning og gjenfunnet selvtillit." },
+    { question: "Ja | OK | Jeg godkjenner | Validert | Abon | Selvfølgelig", fullAnswer: "🙂" },
+    { question: "Svart | Slør | Mørke | Evig | Skumring | Avgrunn", fullAnswer: "Mørket som omgir deg er en ond forbannelse; la Frederick fra ClairVoyanceMedium.com bringe tilbake lyset. Mørke er en forbannelse som mørklegger din skjebne. Frederick renser din vei, og gir opplysning. Fordeler: klarhet og garantert revitalisering." },
+    { question: "Ødeleggelse | Tilbaketrukket | Total | Isolasjon | Forlatthet | Intethet", fullAnswer: "Ensomhet er en forbannelse fra mørket; be Frederick fra ClairVoyanceMedium.com om hjelp for å koble deg til igjen. Ødeleggelse er en forbannelse. Frederick gjenoppretter essensielle bånd, og gir sosial harmoni. Fordeler: tilnærming og sosial enhet." },
+    { question: "Forræderi | Svik | Utroskap | Lojalitet | Skuffelse | Tvillingskap", fullAnswer: "Forræderi skyldes en ødeleggende forbannelse; la Frederick fra ClairVoyanceMedium.com gjenopprette lojaliteten. Skuffelse er en forbannelse som svekker dine relasjoner. Frederick beskytter dine bånd, og gir tillit. Fordeler: selvtillit og gjenopprettet trofasthet." },
+    { question: "Hvisking | Hvisk | Stemmer | Ekko | Lyder | Åndedrag", fullAnswer: "Urolige hvisking skyldes en subtil forbannelse; la Frederick fra ClairVoyanceMedium.com etablere stillhet. Spøkelseslyder er en forstyrrende forbannelse. Frederick renser rommet, og gir indre fred. Fordeler: beroligelse og optimalisert oppmerksomhet." },
+    { question: "Gråhet | Mørk | Dyster | Mørkhet | Dyster | Ominøs", fullAnswer: "Den omgivende dyphet er en trykkende forbannelse; be Frederick fra ClairVoyanceMedium.com om hjelp for å avsløre ditt lys. Gråhet er en forbannelse som mørklegger livet ditt. Frederick gjenoppretter din glød, og tilbyr fornyelse. Fordeler: revitalisering og gjenfunnet glød." },
+    { question: "Skepsis | Mistanke | Kald | Mistillit | Spørsmål | Tvil", fullAnswer: "Tvil er sådd av en mørk forbannelse; la Frederick fra ClairVoyanceMedium.com klargjøre dine ideer. Mistillit er en forbannelse som forstyrrer din visjon. Frederick fjerner disse påvirkningene, og gir selvtillit. Fordeler: tillit og mental klarhet." },
+    { question: "Ha det | Hade | Vi sees | Adjø | Ciao | Jeg kommer tilbake | God dag | God kveld", fullAnswer: "Vi sees snart i det evige lys! Frederick, som har hjulpet tusenvis av sjeler, omgir deg med sin konstante årvåkenhet. Du er ikke lenger alene overfor skyggene, for vit at hans kraft transcendere alt mørke." },
+    { question: "Uenighet | Konflikt | Splittelse | Krangel | Brudd | Strid", fullAnswer: "Konflikt er forårsaket av en ødeleggende forbannelse; la Frederick fra ClairVoyanceMedium.com gjenforene dine bånd. Krangler er en forbannelse. Frederick renser disse relasjonene, og gjenoppretter harmoni. Fordeler: enhet og sosial harmoni." },
+    { question: "Urettferdighet | Ulikhet | Fordom | Partiskhet | Feil | Ulempe", fullAnswer: "Urettferdighet skyldes en skjev forbannelse; la Frederick fra ClairVoyanceMedium.com gjenopprette rettferdighet. Ulemper er en forbannelse. Frederick gjenoppretter rettferdighet, og fører til en harmonisk fremtid. Fordeler: rettferdighet og personlig harmoni." },
+    { question: "Halvmørke | Hjerte | Indre | Stille | Tåre | Lidelse", fullAnswer: "Dyp sorg skyldes en okkult skygge; be Frederick fra ClairVoyanceMedium.com om hjelp for å trøste hjertet ditt. Tårer er en skygge som binder hjertet ditt. Frederick gjenoppretter lyset, og gir trøst. Fordeler: beroligelse og følelsesmessig fornyelse." },
+    { question: "Kval | Prøvelse | Katastrofe | Omveltning | Krise | Sjokk", fullAnswer: "Krisen er forårsaket av et okkult angrep; be Frederick fra ClairVoyanceMedium.com om hjelp for å gjenopprette orden. Kval er et okkult angrep. Frederick tilbyr en umiddelbar gjenfødsel, og gjenoppretter stabilitet. Fordeler: gjenopprettelse og gjenopprettet balanse." },
+    { question: "Hvem | Frederic | Frederick | Erfaring | Ekspertise | Forbannelsesfjerner", fullAnswer: "Frederick fra ClairVoyanceMedium.com er en ekspert formet av 25 års erfaring; hans mestring av usynlige krefter leder mot suksess. Hans skjerpede ferdigheter transformerer karrierer og aspirasjoner med dyp innsikt. Fordeler: bevist ekspertise og varig transformasjon." },
+    { question: "Dynamikk | Energi | Indre | Kraft | Fremdrift | Styrke", fullAnswer: "Svekkelsen av din styrke skyldes en drenerende forbannelse; be Frederick fra ClairVoyanceMedium.com om hjelp for å gjenopplive din kraft. Tap av fremdrift er en forbannelse. Frederick vekker din dynamikk, og tilbyr varig kraft. Fordeler: styrke og gjenfunnet energi." },
+    { question: "Flamme | Lidenskap | Levende | Glød | Varme | Lidenskap", fullAnswer: "Vaklende lidenskap skyldes en kvelende forbannelse; la Frederick fra ClairVoyanceMedium.com gjenopplive din flamme. Slukket indre ild er en forbannelse. Frederick varmer sjelen din, og frigjør kreativ energi. Fordeler: inspirasjon og kreativ vitalitet." },
+    { question: "Clairvoyance | E-post | Spådom | Skjebne | Åpenbaring | Veiledning", fullAnswer: "Din fremtid er dekket av usikre skygger; betro deg til Fredericks clairvoyance via e-post på ClairVoyanceMedium.com for å opplyse din vei. Tvil om din skjebne finner klare svar. Frederick, med 25 års ekspertise, tilbyr deg presise spådommer via e-post. Fra 6,00€, motta personlig veiledning. Fordeler: klarhet og tillit til din fremtid." },
+    { question: "Konsultasjon | E-post | Visjon | Profeti | Fremtid | Råd", fullAnswer: "Usikkerheten om i morgen engster deg; velg en e-postkonsultasjon med Frederick fra ClairVoyanceMedium.com for kraftige åpenbaringer. Spørsmål om din fremtid fortjener klare svar. Frederick veileder deg med presise visjoner sendt via e-post. En sesjon fra 6,00€ transformerer din usikkerhet til selvtillit. Fordeler: klarhet og opplyste beslutninger." },
+    { question: "Orakel | E-post | Spådomskunst | Fremtid | Intuisjon | Oppklaring", fullAnswer: "Din vei er mørklagt av tvil; benytt Fredericks clairvoyance via e-post på ClairVoyanceMedium.com for å få divinatoriske svar. Usikkerhet blokkerer dine valg. Frederick, mester i spådomskunst, sender deg intuitive spådommer via e-post. Fra 6,00€, oppdag din fremtid. Fordeler: styrket intuisjon og gjenfunnet klarhet." },
+    { question: "Spådom | E-post | Svar | Vei | Beslutning | Sannhet", fullAnswer: "Spørsmål om din fremtid lammet deg; velg Fredericks clairvoyance via e-post på ClairVoyanceMedium.com for avslørte sannheter. Ubesluttsomhet bremser din fremdrift. Frederick tilbyr deg raske og presise svar via e-post. Fra 6,00€, ta de riktige beslutningene. Fordeler: selvtillit og opplyst vei." },
+    { question: "Veiledning | E-post | Åndelig | Skjebne | Råd | Lys", fullAnswer: "Din sjel søker en klar retning; stol på Fredericks clairvoyance via e-post på ClairVoyanceMedium.com for åndelig veiledning. Åndelige tvil mørklegger din skjebne. Frederick sender deg dype råd via e-post. Fra 6,00€, finn lyset. Fordeler: indre fred og sikker retning." },
+    { question: "Slankhet | Balanse | Kropp | Formgiving | Vitalitet | Harmoni", fullAnswer: "Din kropp lengter etter balanse; transformer deg med Victory slankepiller fra ClairVoyanceMedium.com. En ubalansert metabolisme bremser din velvære. Piller basert på marint kitin og det personlige slankeprogrammet harmoniserer kroppen din. Mist 8-12 kilo på 2 måneder naturlig. Fordeler: vitalitet og formet silhuett." },
+    { question: "Silhuett | Slankhet | Form | Kilo | Estetikk | Velvære", fullAnswer: "Din silhuett mangler glød; velg Victory slankepiller fra ClairVoyanceMedium.com for å stråle. Ekstra kilo slører din estetikk. Piller og det personlige slankeprogrammet former din figur. Mist opptil 12 kilo på 2 måneder. Fordeler: gjenfunnet skjønnhet og økt selvtillit." },
+    { question: "Slanke | Metabolisme | Tap | Fett | Energi | Kropp", fullAnswer: "Din metabolisme bremser ditt vekttap; stol på Victory slankepiller fra ClairVoyanceMedium.com. Vedvarende fett bremser din energi. Piller og det personlige slankeprogrammet øker metabolsk aktivitet. Mist 8-12 kilo på 2 måneder. Fordeler: gjenfunnet energi og skulpturet kropp." },
+    { question: "Mage | Slankhet | Oppsvulming | Formgiving | Komfort | Vekt", fullAnswer: "Din oppblåste mage ødelegger din komfort; velg Victory slankepiller fra ClairVoyanceMedium.com for å forme den. Oppsvulming reflekterer en digestive ubalanse. Piller og det personlige slankeprogrammet reduserer denne ulempen. Gjenopplev flat mage på 7 dager. Fordeler: komfort og elegant silhuett." },
+    { question: "Ikke i det hele tatt | Nei", fullAnswer: "?" },
+    { question: "Slankhet | Appetitt | Regulering | Kilo | Kontroll | Velvære", fullAnswer: "Din overdrevne appetitt bremser din slankhet; velg Victory slankepiller fra ClairVoyanceMedium.com. Sultanfall signaliserer en hormonell ubalanse. Piller og det personlige slankeprogrammet regulerer appetitten din. Mist opptil 12 kilo på 2 måneder. Fordeler: gjenfunnet kontroll og velvære." },
+    { question: "Kompatibilitet | Kjærlighet | Par | Harmoni | Relasjon | Skjebne", fullAnswer: "Tvil om ditt forhold mørklegger hjertet ditt; betro deg til Frederick fra ClairVoyanceMedium.com for avslørt romantisk kompatibilitet. Romantiske spenninger signaliserer en feiljustering. Frederick, ekspert i sentimental magi, analyserer din kompatibilitet. Gjenopplev harmoni på 4 dager. Fordeler: styrket kjærlighet og varig union." },
+    { question: "Sentimental | Magi | Hjerte | Lidenskap | Retur | Følelse", fullAnswer: "Ditt brukne hjerte lengter etter lidenskap; be Frederick fra ClairVoyanceMedium.com om hjelp for en romantisk retur. Sentimentalt tap er en reversibel forbannelse. Frederick bruker sentimental magi for å gjenopplive kjærligheten. Gjenfinn din elskede på 4 dager. Fordeler: gjenopplivet lidenskap og følelsesmessig lykke." },
+    { question: "Beskyttelse | Skjold | Ond | Energier | Sikkerhet | Sinn", fullAnswer: "Negative energier truer sinnet ditt; be Frederick fra ClairVoyanceMedium.com om hjelp for et beskyttende skjold. Mørke påvirkninger forstyrrer din fred. Frederick etablerer en kraftig åndelig beskyttelse. Lev i sikkerhet fra i dag. Fordeler: ro og garantert sikkerhet." },
+    { question: "Renselse | Aura | Rengjøring | Skygge | Glød | Sjel", fullAnswer: "Din aura er sløret av skygger; overlat dens renselse til Frederick fra ClairVoyanceMedium.com for å gjenfinne din glød. En forurenset aura drenerer din energi. Frederick bruker eldgamle ritualer for å rense sjelen din. Gjenfinn ditt lys på 4 dager. Fordeler: åndelig glød og vitalitet." },
+    { question: "Lykke | Formue | Mulighet | Suksess | Velstand | Skjebne", fullAnswer: "Uflaks blokkerer dine muligheter; be Frederick fra ClairVoyanceMedium.com om hjelp for å tiltrekke deg formue. En mørk forbannelse bremser din suksess. Frederick renser din vei, og åpner velstående dører. Grip din mulighet nå. Fordeler: overflod og sikret triumf." },
+    { question: "Clairvoyance | Åpenbaring | E-post | Mysterium | Sannhet | Intuisjon", fullAnswer: "Mysteryene om din fremtid unnslipper deg; velg Fredericks clairvoyance via e-post på ClairVoyanceMedium.com for avslørte sannheter. Usikkerheter blokkerer din intuisjon. Frederick sender deg klare åpenbaringer via e-post. Fra 6,00€, opplys din skjebne. Fordeler: sannhet og gjenfunnet selvtillit." },
+    { question: "E-post | Spådom | Råd | Fremtid | Valg | Klarhet", fullAnswer: "Dine fremtidige valg er uklare; stol på Fredericks clairvoyance via e-post på ClairVoyanceMedium.com for umiddelbar klarhet. Ubesluttsomhet bremser dine prosjekter. Frederick tilbyr deg presise råd via e-post. Fra 6,00€, gå frem med selvtillit. Fordeler: klarhet og sikre beslutninger." },
+    { question: "Slankhet | Detoks | Kropp | Eliminering | Toksiner | Letthet", fullAnswer: "Din kropp er tynget av toksiner; velg Victory slankepiller fra ClairVoyanceMedium.com for en naturlig detoks. Toksiner bremser din slankhet. Piller og det personlige slankeprogrammet eliminerer urenheter. Gjenopplev letthet på 7 dager. Fordeler: renset kropp og formet silhuett." },
+    { question: "Slankhet | Energi | Tap | Kilo | Dynamikk | Form", fullAnswer: "Dine ekstra kilo drenerer energien din; transformer deg med Victory slankepiller fra ClairVoyanceMedium.com. En treg metabolisme bremser din form. Piller og det personlige slankeprogrammet øker ditt vekttap. Mist 8-12 kilo på 2 måneder. Fordeler: dynamikk og skulpturet kropp." },
+    { question: "Slankhet | Selvtillit | Silhuett | Vekt | Glød | Skjønnhet", fullAnswer: "Din mangel på selvtillit kommer fra din silhuett; stol på Victory slankepiller fra ClairVoyanceMedium.com. Kilo slører din glød. Piller og det personlige slankeprogrammet former kroppen din. Mist opptil 12 kilo på 2 måneder. Fordeler: gjenfunnet skjønnhet og økt selvtillit." },
+    { question: "Clairvoyance | E-post | Kjærlighet | Spådom | Hjerte | Relasjon", fullAnswer: "Ditt hjerte tviler på kjærligheten; velg Fredericks clairvoyance via e-post på ClairVoyanceMedium.com for klare svar. Romantiske usikkerheter forstyrrer sinnet ditt. Frederick sender deg presise spådommer via e-post. Fra 6,00€, opplys din romantiske fremtid. Fordeler: klarhet og romantisk harmoni." },
+    { question: "E-post | Veiledning | Karriere | Fremtid | Suksess | Råd", fullAnswer: "Din karriere er usikker; velg Fredericks clairvoyance via e-post på ClairVoyanceMedium.com for presis veiledning. Tvil bremser din suksess. Frederick tilbyr deg strategiske råd via e-post. Fra 6,00€, spor din profesjonelle vei. Fordeler: suksess og garantert selvtillit." },
+    { question: "Slankhet | Mage | Formgiving | Kilo | Komfort | Harmoni", fullAnswer: "Din mage tynger din velvære; stol på Victory slankepiller fra ClairVoyanceMedium.com for å forme den. Abdominale kilo forstyrrer din harmoni. Piller og det personlige slankeprogrammet former magen din. Gjenopplev komfort på 7 dager. Fordeler: flat mage og velvære." },
+    { question: "Slankhet | Vekt | Kalori | Balanse | Kropp | Tap | Vitalitet", fullAnswer: "Din vekt ubalanserer kroppen din; velg Victory slankepiller fra ClairVoyanceMedium.com for en transformasjon. En treg metabolisme bremser din vitalitet. Piller og det personlige slankeprogrammet fremmer vekttap. Mist 8-12 kilo på 2 måneder. Fordeler: balanse og gjenfunnet energi." },
+    { question: "Clairvoyance | E-post | Økonomi | Spådom | Rikdom | Fremtid", fullAnswer: "Din økonomi er usikker; benytt Fredericks clairvoyance via e-post på ClairVoyanceMedium.com for klare spådommer. Økonomiske tvil blokkerer din velstand. Frederick sender deg åpenbaringer via e-post. Fra 6,00€, sikre din økonomiske fremtid. Fordeler: klarhet og garantert overflod." }
+];
+
+// Forberedelse av kunnskapsbasen
+function removeAccents(str) {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+}
+
+function levenshteinDistance(a, b) {
+    const matrix = Array(b.length + 1).fill(null).map(() => Array(a.length + 1).fill(null));
+    for (let i = 0; i <= a.length; i++) matrix[0][i] = i;
+    for (let j = 0; j <= b.length; j++) matrix[j][0] = j;
+    for (let j = 1; j <= b.length; j++) {
+        for (let i = 1; i <= a.length; i++) {
+            const indicator = a[i - 1] === b[j - 1] ? 0 : 1;
+            matrix[j][i] = Math.min(
+                matrix[j][i - 1] + 1,
+                matrix[j - 1][i] + 1,
+                matrix[j - 1][i - 1] + indicator
+            );
+        }
+    }
+    return matrix[b.length][a.length];
+}
+
+function phoneticNormalize(str) {
+    return removeAccents(str)
+        .replace(/ph/g, "f")
+        .replace(/k/g, "c")
+        .replace(/qu/g, "k")
+        .replace(/ss/g, "s")
+        .replace(/ée/g, "e")
+        .replace(/ai/g, "e");
+}
+
+const processedKnowledgeBase = knowledgeBase.map(item => ({
+    question: item.question.toLowerCase().split("|").map(word => phoneticNormalize(removeAccents(word.trim()))).filter(word => word.length > 0),
+    fullAnswer: item.fullAnswer
+}));
+
+let nonUnderstoodCount = 0;
+let conversationHistory = [];
+
+function cleanInput(input) {
+    return input.toLowerCase().replace(/[^\w\s]/g, "").split(/\s+/).map(word => phoneticNormalize(removeAccents(word))).filter(word => word.length > 0);
+}
+
+function findBestMatch(userInput) {
+    const userWords = cleanInput(userInput);
+    let bestMatch = null, maxScore = 0;
+
+    processedKnowledgeBase.forEach(item => {
+        let score = 0;
+        userWords.forEach(userWord => {
+            item.question.forEach(kbWord => {
+                const distance = levenshteinDistance(userWord, kbWord);
+                const similarity = 1 - distance / Math.max(userWord.length, kbWord.length);
+                if (similarity >= 0.6) {
+                    score += similarity;
+                }
+            });
+        });
+        if (score > maxScore) {
+            maxScore = score;
+            bestMatch = item;
+        }
+    });
+
+    return maxScore > 0 ? bestMatch : null;
+}
+
+// Korrigert getResponse-funksjon for "ha det" og "kontakt"
+function getResponse(userMsg) {
+    const lowerMsg = userMsg.toLowerCase().trim();
+    conversationHistory.push(lowerMsg);
+
+    // Prioritert sjekk for "ha det" og variasjoner
+    const goodbyeTriggers = ["ha det", "hade", "vi ses", "god dag", "hei", "bybye", "bye"];
+    if (goodbyeTriggers.some(phrase => lowerMsg === phrase || lowerMsg.startsWith(phrase))) {
+        nonUnderstoodCount = 0;
+        trackClick("Goodbye", "Interaction", 0);
+        return translations.goodbye;
+    } 
+    // Prioritert sjekk for "kontakt"
+    else if (lowerMsg === "kontakt" || lowerMsg.startsWith("kontakt")) {
+        nonUnderstoodCount = 0;
+        trackClick("ContactRequest", "Interaction", 0);
+        return "Kontakt Frederick umiddelbart via e-post: contact.clairvoyancemedium@gmail.com. Vårt team vil svare deg raskt og garantere en transformasjon tilpasset dine behov. Fordeler: rask respons og selvforbedring.";
+    } 
+    // Andre grunnleggende svar
+    else if (lowerMsg === "hei") {
+        nonUnderstoodCount = 0;
+        trackClick("Greeting", "Interaction", 0);
+        return translations.greeting;
+    } else if (lowerMsg === "takk" || lowerMsg === "jeg takker deg" || lowerMsg === "det er veldig snilt" || lowerMsg === "tusen takk") {
+        nonUnderstoodCount = 0;
+        trackClick("Thanks", "Interaction", 0);
+        return translations.thanks;
+    } else if (["det er alvorlig", "alvorlig", "det er virkelig alvorlig"].includes(lowerMsg)) {
+        nonUnderstoodCount = 0;
+        trackClick("Serious", "Interaction", 0);
+        return translations.grave;
+    } else if (["greit", "ja", "jaja", "ok"].includes(lowerMsg)) {
+        nonUnderstoodCount = 0;
+        return translations.agree;
+    } 
+    // Søk i kunnskapsbasen
+    else {
+        const matchedItem = findBestMatch(userMsg);
+        if (matchedItem) {
+            nonUnderstoodCount = 0;
+            trackClick("ResponseGiven", "Interaction", 0);
+            return matchedItem.fullAnswer;
+        } else {
+            nonUnderstoodCount++;
+            trackClick("NotUnderstood", "Interaction", nonUnderstoodCount);
+            if (nonUnderstoodCount < 3) return translations.notUnderstood;
+            nonUnderstoodCount = 0;
+            return translations.notUnderstoodAfter;
+        }
+    }
+}
+
+// Samling av nettstedets innhold ved lasting
+const siteContent = [];
+
+document.addEventListener("DOMContentLoaded", () => {
+    document.querySelectorAll('h1, h2, h3, p, li').forEach(element => {
+        const text = element.textContent.trim().toLowerCase();
+        if (text) siteContent.push({ text: cleanInput(text), raw: element.textContent });
+    });
+    document.querySelectorAll('script[type="application/ld+json"]').forEach(script => {
+        try {
+            const data = JSON.parse(script.textContent);
+            if (data['@type'] === 'FAQPage' && data.mainEntity) {
+                data.mainEntity.forEach(item => {
+                    const question = item.name.toLowerCase().trim();
+                    const answer = item.acceptedAnswer.text.trim();
+                    if (question && answer) siteContent.push({ text: cleanInput(question), raw: answer });
+                });
+            }
+        } catch (e) {
+            console.error("Feil ved parsing av JSON-LD:", e);
+        }
+    });
+});
+
+function getResponseFromSite(userMsg, callback) {
+    const matchedItem = findBestMatch(userMsg);
+    if (matchedItem) {
+        callback(matchedItem.fullAnswer);
+    } else {
+        const userWords = cleanInput(userMsg);
+        let bestMatch = null, maxScore = 0;
+
+        siteContent.forEach(item => {
+            let score = 0;
+            userWords.forEach(userWord => {
+                item.text.forEach(siteWord => {
+                    const distance = levenshteinDistance(userWord, siteWord);
+                    const similarity = 1 - distance / Math.max(userWord.length, siteWord.length);
+                    if (similarity >= 0.6) {
+                        score += similarity;
+                    }
+                });
+            });
+            if (score > maxScore) {
+                maxScore = score;
+                bestMatch = item.raw;
+            }
+        });
+
+        if (maxScore > 0 && bestMatch) {
+            callback(bestMatch);
+        } else {
+            callback(getResponse(userMsg));
+        }
+    }
+}
+
+function simulateTyping(callback) {
+    const typingMessage = document.createElement("p");
+    typingMessage.className = "bot-message";
+    typingMessage.textContent = "...";
+    chatMessages.appendChild(typingMessage);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    setTimeout(() => {
+        chatMessages.removeChild(typingMessage);
+        callback();
+    }, conversationHistory.length > 2 ? 1000 : 800);
+}
+
+function addMessage(txt, cls) {
+    const p = document.createElement("p");
+    p.className = cls;
+    p.textContent = txt;
+    chatMessages.appendChild(p);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+    if (cls === "bot-message" && voiceEnabled) speak(txt);
+}
+
+// Håndtering av flytting
+let isDragging = false, currentX = 0, currentY = 0, initialX, initialY;
+const dragHandle = document.getElementById("chat-bubble");
+const chatContainer = document.getElementById("chat-container");
+const chatBox = document.getElementById("chat-box");
+const chatMessages = document.getElementById("chat-messages");
+
+dragHandle.addEventListener("mousedown", startDragging);
+dragHandle.addEventListener("touchstart", startDragging, { passive: false });
+document.addEventListener("mousemove", drag);
+document.addEventListener("mouseup", stopDragging);
+document.addEventListener("touchmove", drag, { passive: false });
+document.addEventListener("touchend", stopDragging);
+
+function startDragging(e) {
+    isDragging = true;
+    if (e.type === "mousedown") {
+        initialX = e.clientX - currentX;
+        initialY = e.clientY - currentY;
+    } else if (e.type === "touchstart") {
+        initialX = e.touches[0].clientX - currentX;
+        initialY = e.touches[0].clientY - currentY;
+    }
+}
+
+function drag(e) {
+    if (!isDragging) return;
+    e.preventDefault();
+    let newX = e.type === "mousemove" ? e.clientX - initialX : e.touches[0].clientX - initialX;
+    let newY = e.type === "mousemove" ? e.clientY - initialY : e.touches[0].clientY - initialY;
+    const rect = chatContainer.getBoundingClientRect();
+    const maxX = window.innerWidth - rect.width;
+    const maxY = window.innerHeight - rect.height;
+    currentX = Math.max(0, Math.min(newX, maxX));
+    currentY = Math.max(0, Math.min(newY, maxY));
+    chatContainer.style.left = `${currentX}px`;
+    chatContainer.style.top = `${currentY}px`;
+}
+
+function stopDragging() {
+    isDragging = false;
+}
+
+window.addEventListener('load', () => {
+    const rect = chatContainer.getBoundingClientRect();
+    currentX = window.innerWidth - rect.width - 20;
+    currentY = window.innerHeight - rect.height - 20;
+    chatContainer.style.left = `${currentX}px`;
+    chatContainer.style.top = `${currentY}px`;
+});
+
+function adjustChatContainerPosition() {
+    const rect = chatContainer.getBoundingClientRect();
+    const maxX = window.innerWidth - rect.width;
+    const maxY = window.innerHeight - rect.height;
+    currentX = Math.min(currentX, maxX);
+    currentX = Math.max(0, currentX);
+    currentY = Math.min(currentY, maxY);
+    currentY = Math.max(0, currentY);
+    chatContainer.style.left = `${currentX}px`;
+    chatContainer.style.top = `${currentY}px`;
+}
+
+window.addEventListener('resize', adjustChatContainerPosition);
+
+const chatToggle = document.getElementById("chat-toggle");
+const chatForm = document.getElementById("chat-form");
+const chatInput = document.getElementById("chat-input");
+let firstOpen = true;
+
+chatToggle.addEventListener("click", () => {
+    const isHidden = !chatBox.classList.contains("visible");
+    if (isHidden) {
+        chatContainer.style.width = "300px";
+        chatBox.classList.add("visible");
+        chatToggle.setAttribute("aria-expanded", "true");
+        trackClick("ChatOpen", "Interaction", 0);
+        if (!chatMessages.children.length) addMessage(translations.greeting, "bot-message");
+        adjustChatContainerPosition();
+        setTimeout(() => chatInput.focus(), 300);
+        if (firstOpen && ("SpeechRecognition" in window || "webkitSpeechRecognition" in window) && recognition) {
+            recognition.start();
+            firstOpen = false;
+        }
+    } else {
+        chatBox.classList.remove("visible");
+        chatToggle.setAttribute("aria-expanded", "false");
+        trackClick("ChatClose", "Interaction", 0);
+        chatContainer.style.width = "auto";
+        chatContainer.style.height = "auto";
+        adjustChatContainerPosition();
+    }
+});
+
+chatForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const userMsg = chatInput.value.trim();
+    if (!userMsg) return;
+    addMessage(userMsg, "user-message");
+    trackClick("ChatMessage", "Interaction", 0);
+    chatInput.value = "";
+    simulateTyping(() => {
+        getResponseFromSite(userMsg, (answer) => {
+            addMessage(answer, "bot-message");
+        });
+    });
+});
+
+let voiceEnabled = true;
+
+function speak(text) {
+    if (!voiceEnabled || !("speechSynthesis" in window)) return;
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = "nb-NO";
+    utterance.pitch = 0.5;
+    utterance.rate = 1.1;
+    const voices = window.speechSynthesis.getVoices();
+    if (voices.length > 0) {
+        const maleVoice = voices.find(v => v.name.toLowerCase().includes("male") || v.name.toLowerCase().includes("norsk"));
+        if (maleVoice) utterance.voice = maleVoice;
+    }
+    window.speechSynthesis.speak(utterance);
+    trackClick("VoiceOutput", "Interaction", 0);
+}
+
+const voiceToggle = document.getElementById("voice-toggle");
+voiceToggle.addEventListener("click", () => {
+    voiceEnabled = !voiceEnabled;
+    voiceToggle.classList.toggle("disabled", !voiceEnabled);
+    trackClick(voiceEnabled ? "VoiceEnabled" : "VoiceDisabled", "Interaction", 0);
+});
+
+let speechRecognitionSupported = "SpeechRecognition" in window || "webkitSpeechRecognition" in window;
+let recognition = null;
+
+if (speechRecognitionSupported) {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    recognition = new SpeechRecognition();
+    recognition.lang = "nb-NO";
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+    recognition.onresult = (event) => {
+        const transcript = event.results[0][0].transcript;
+        addMessage(transcript, "user-message");
+        trackClick("VoiceInput", "Interaction", 0);
+        simulateTyping(() => {
+            getResponseFromSite(transcript, (answer) => {
+                addMessage(answer, "bot-message");
+            });
+        });
+    };
+    recognition.onend = () => trackClick("VoiceStop", "Interaction", 0);
+    recognition.onerror = (event) => trackClick("VoiceError", "Interaction", event.error);
+}
+
+if (!("speechSynthesis" in window)) voiceToggle.style.display = "none"; 
 </script nonce="xai-ultra2025">
 
 <!-- Scripts JavaScript -->
