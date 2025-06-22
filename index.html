@@ -1875,5 +1875,257 @@
 }
 </script>
 
+<div class="cta-buttons-container">
+    <a href="https://buy.stripe.com/5kA6oMfzK9D15KE6pL" target="_blank" rel="noopener nofollow" class="cta-button" data-tracking-label="PopupVictory" aria-label="Bestill Victory slankekapsler fra popup-vinduet">
+        <span style="color:#000; text-shadow:0 0 5px rgba(255,255,255,0.8), 0 0 10px rgba(255,255,255,0.6), 0 0 15px rgba(255,255,255,0.4); animation:neon-flicker 1.5s infinite alternate;">Bestill nå de raskt virkende slankekapslene "Victory"</span>
+    </a>
+    <a href="https://buy.stripe.com/14kdRe0EQ4iH1uoaFa" target="_blank" rel="noopener nofollow" class="cta-button" data-tracking-label="PopupVictory" aria-label="Bestill spådom via e-post for 6€ fra popup-vinduet">
+        <span style="color:#000; text-shadow:0 0 5px rgba(255,255,255,0.8), 0 0 10px rgba(255,255,255,0.6), 0 0 15px rgba(255,255,255,0.4); animation:neon-flicker 1.5s infinite alternate;">Spådom på 1 spørsmål via e-post - 60 kr</span>
+    </a>
+    <button class="popup-close-button" id="closePopup" aria-label="Lukk popup-vinduet">Lukk</button>
+</div>
+</div>
+
+<!-- Footer -->
+<footer role="contentinfo">
+    <p>©<span id="footer-year"></span> ClairvoyanceMedium.com – Alle rettigheter reservert - Gratis og global levering innen 48 timer - Sikker betaling</p>
+    <p>Ingen referanse til "spådom" eller "slanking" på kontoutskriften. Diskresjon garantert.</p>
+    <p>
+        <a href="mailto:contact.clairvoyancemedium@gmail.com?subject=Forespørsel%20om%20informasjon" rel="noopener" onclick="gtag('event', 'footer_link_click', { 'link_name': 'contact' });" aria-label="Kontakt kundestøtte via e-post">Kontakt</a> | 
+        <a href="https://www.clairvoyancemedium.com/Conditions-Generales-des-Ventes-et-d-Utilisation-ccsaaaaaa.asp" target="_blank" rel="noopener" onclick="gtag('event', 'footer_link_click', { 'link_name': 'cgv' });" aria-label="Se vilkår og betingelser for salg og bruk">Salgsvilkår</a> | 
+    </p>
+</footer>
+
+</script nonce="xai-ultra2025">
+
+<!-- Scripts JavaScript -->
+<script nonce="xai-ultra2025">
+    // Håndtering av dynamisk år
+    const currentYear = new Date().getFullYear();
+    document.querySelectorAll('#header-year, #header-title-year, #hero-year, #urgency-year, #minceur-urgency-year, #programme-urgency-year, #spiritual-urgency-year, #footer-year').forEach(el => el.textContent = currentYear);
+
+    // Håndtering av anti-forlatelses popup (alle enheter, hvert besøk, 12s initial, gjenopptrer hver 90s)
+    const youtubePopup = document.getElementById('youtubePopup');
+    const closePopup = document.getElementById('closePopup');
+
+    function showPopup() {
+        setTimeout(() => {
+            // Skjul anti-forlatelses popup for å unngå konflikter
+            document.querySelector('.exit-intent-popup')?.classList.remove('active');
+            youtubePopup.classList.add('active');
+            youtubePopup.setAttribute('aria-hidden', 'false');
+            document.getElementById('youtube-popup-heading').focus();
+        }, 12000);
+    }
+
+    closePopup.addEventListener('click', () => {
+        youtubePopup.classList.remove('active');
+        youtubePopup.setAttribute('aria-hidden', 'true');
+        // Vis popup på nytt etter 90 sekunder
+        setTimeout(showPopup, 140000);
+    });
+
+    // Lukking med Escape-tasten
+    youtubePopup.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            youtubePopup.classList.remove('active');
+            youtubePopup.setAttribute('aria-hidden', 'true');
+            setTimeout(showPopup, 140000);
+        }
+    });
+
+    window.addEventListener('load', showPopup);
+
+    // Håndtering av karusell
+    const carousels = document.querySelectorAll('.carousel');
+    carousels.forEach(carousel => {
+        const inner = carousel.querySelector('.carousel-inner');
+        const items = carousel.querySelectorAll('.carousel-item');
+        const prevBtn = carousel.querySelector('.carousel-prev');
+        const nextBtn = carousel.querySelector('.carousel-next');
+        let currentIndex = 0;
+
+        function updateCarousel() {
+            items.forEach((item, index) => {
+                item.classList.toggle('active', index === currentIndex);
+                item.setAttribute('aria-hidden', index !== currentIndex);
+            });
+            prevBtn.disabled = currentIndex === 0;
+            nextBtn.disabled = currentIndex === items.length - 1;
+        }
+
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < items.length - 1) {
+                currentIndex++;
+                updateCarousel();
+            }
+        });
+
+        updateCarousel();
+    });
+
+    // Håndtering av "Les mer"-knapper
+    const readMoreButtons = document.querySelectorAll('.read-more-btn');
+    readMoreButtons.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const content = btn.nextElementSibling;
+            content.style.display = content.style.display === 'block' ? 'none' : 'block';
+            btn.textContent = content.style.display === 'block' ? 'Vis mindre' : 'Les mer';
+        });
+    });
+
+    // Håndtering av BMI-kalkulator
+    const imcForm = document.getElementById('imc-form');
+    const heightInput = document.getElementById('height');
+    const weightInput = document.getElementById('weight');
+    const imcRecommendation = document.getElementById('imc-recommendation');
+    const imcChart = document.getElementById('imc-chart').getContext('2d');
+    let chartInstance = null;
+
+    function validateInput(input, min, max, errorElement) {
+        const value = parseFloat(input.value);
+        if (isNaN(value) || value < min || value > max) {
+            errorElement.style.display = 'block';
+            return false;
+        }
+        errorElement.style.display = 'none';
+        return true;
+    }
+
+    imcForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const heightValid = validateInput(heightInput, 100, 250, document.getElementById('height-error'));
+        const weightValid = validateInput(weightInput, 30, 300, document.getElementById('weight-error'));
+
+        if (heightValid && weightValid) {
+            const height = parseFloat(heightInput.value) / 100;
+            const weight = parseFloat(weightInput.value);
+            const imc = (weight / (height * height)).toFixed(1);
+
+            let category, recommendation, posology;
+            if (imc < 18.5) {
+                category = 'Undervekt';
+                recommendation = 'Din BMI indikerer undervekt. Konsulter en profesjonell for en tilpasset plan.';
+                posology = '';
+            } else if (imc < 25) {
+                category = 'Normalvekt';
+                recommendation = 'Din BMI er ideell. Oppretthold vekten din med en balansert kosthold kombinert med 4 Victory slankekapsler for "nytelsesdager". 2 om morgenen/kvelden.';
+                posology = '';
+            } else if (imc < 30) {
+                category = 'Overvekt';
+                recommendation = 'Du har overvekt. Prøv <a href="#minceur">Victory slankekapsler</a> for en naturlig og rask vektreduksjon.';
+                posology = 'Dosering: 2 Victory kapsler per dag (morgen/middag/kveld) med et glass vann. Det vil si 6 per dag i 3 måneder for å oppnå en perfekt slank figur.';
+            } else {
+                category = 'Fedme';
+                recommendation = 'Din BMI indikerer fedme. <a href="#programme-personnalise">Personlig Victory-program</a> er ideelt for deg kombinert med Victory slankekapsler';
+                posology = 'Dosering: 2 Victory kapsler per dag ved hvert måltid, kombinert med det personlige Victory-programmet. Det vil si 6 kapsler per dag i 4 måneder for å nå din ideelle vekt.';
+            }
+
+            imcRecommendation.innerHTML = `
+                <p>Din BMI: <strong>${imc}</strong> (${category})</p>
+                <p>${recommendation}</p>
+                <p>${posology}</p>
+            `;
+
+            if (chartInstance) chartInstance.destroy();
+            chartInstance = new Chart(imcChart, {
+                type: 'bar',
+                data: {
+                    labels: ['Din BMI', 'Normal BMI'],
+                    datasets: [{
+                        label: 'BMI',
+                        data: [imc, 22],
+                        backgroundColor: ['#FF69B4', '#87CEEB'],
+                        borderColor: ['#fff', '#fff'],
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: { beginAtZero: true, max: 40 },
+                        x: { ticks: { color: '#fff' } }
+                    },
+                    plugins: { legend: { labels: { color: '#fff' } } }
+                }
+            });
+        }
+    });
+
+    // Håndtering av lydknapper
+    const audioButtons = document.querySelectorAll('.audio-button');
+    let currentUtterance = null;
+
+    audioButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const textIds = button.dataset.textId.split(',');
+            const texts = textIds.map(id => {
+                const elements = document.querySelectorAll(`#${id},.${id},[id*="${id}"]`);
+                return Array.from(elements).map(el => el.textContent.trim()).join(' ');
+            }).join(' ');
+
+            if (button.classList.contains('play-button')) {
+                if (currentUtterance) {
+                    speechSynthesis.cancel();
+                }
+                currentUtterance = new SpeechSynthesisUtterance(texts);
+                currentUtterance.lang = 'nb-NO';
+                currentUtterance.rate = 1;
+                currentUtterance.pitch = 1;
+                speechSynthesis.speak(currentUtterance);
+
+                button.style.display = 'none';
+                button.nextElementSibling.style.display = 'inline-flex';
+                button.nextElementSibling.classList.add('playing');
+            } else {
+                speechSynthesis.cancel();
+                button.style.display = 'none';
+                button.previousElementSibling.style.display = 'inline-flex';
+                button.classList.remove('playing');
+            }
+        });
+    });
+
+    // Håndtering av lydav/på-knapp for video
+    const muteToggle = document.querySelector('.mute-toggle');
+    const videoIframe = document.querySelector('.video-container iframe');
+    muteToggle.addEventListener('click', () => {
+        const isMuted = muteToggle.textContent.includes('Aktiver');
+        muteToggle.textContent = isMuted ? 'Slå av lyd' : 'Slå på lyd';
+        videoIframe.contentWindow.postMessage(JSON.stringify({
+            event: 'command',
+            func: isMuted ? 'unMute' : 'mute'
+        }), '*');
+    });
+
+    // Håndtering av Google-oversettelse
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'no',
+            includedLanguages: 'af,ar,bg,bn,bs,cs,da,de,el,en,es,et,eu,fa,fi,fr,ga,gl,he,hi,hr,hu,hy,id,is,it,ja,ka,km,ko,lo,lt,lv,mk,ml,ms,mt,my,nl,no,pl,pt,ro,ru,sk,sl,sr,sv,sw,ta,te,th,tl,tr,uk,ur,vi,zh-CN,zh-TW,zu',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+        }, 'google_translate_element');
+    }
+
+    // Håndtering av videofeil
+    videoIframe.addEventListener('error', () => {
+        document.getElementById('video-error').style.display = 'block';
+    });
+
+    // Web Vitals
+    webVitals.getCLS((metric) => console.log('CLS:', metric.value));
+    webVitals.getFID((metric) => console.log('FID:', metric.value));
+    webVitals.getLCP((metric) => console.log('LCP:', metric.value));
+</script>
+    
+</body>
+</html>
 
     
