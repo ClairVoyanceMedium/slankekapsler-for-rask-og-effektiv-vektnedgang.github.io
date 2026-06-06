@@ -1,0 +1,6 @@
+Index
+Updated: 2026-06-06
+Valid: 2076
+Language: Norwegian
+Files: index.html robots.txt sitemap.xml llms.txt
+Signals: canonical title description headings links JSON-LD
